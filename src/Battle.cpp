@@ -52,9 +52,9 @@ void Battle::printLog() {
         printf("#=====================================================================================#\n");
         printf("Turn %d \t\t\t\t\tUnits\t\tUnit Change\n",turn+1);
         printf("[Our Side]\t\t\t\t%d\t\t\t-%d\n", static_cast<int>(this->log.at(turn).at(0)),                                   // m1 count
-                                                  static_cast<int>(this->log.at(turn).at(3)+this->log.at(turn).at(4)));   // m1 turn losses
+                                                  static_cast<int>(this->log.at(turn).at(3)+this->log.at(turn).at(4)));         // m1 turn losses
         printf("[Enemy]\t\t\t\t\t%d\t\t\t-%d\n", static_cast<int>(this->log.at(turn).at(1)),                                    // m2 count
-                                                 static_cast<int>(this->log.at(turn).at(2)+this->log.at(turn).at(5)));    // m2 turn losses
+                                                 static_cast<int>(this->log.at(turn).at(2)+this->log.at(turn).at(5)));          // m2 turn losses
         printf("[%s] (%d) attacked [%s], [%s] lost %d units\n", this->march_1->getName().c_str(),                 
                                                                 static_cast<int>(this->log.at(turn).at(0)),
                                                                 this->march_2->getName().c_str(),
@@ -78,11 +78,18 @@ void Battle::printLog() {
 }
 
 int Battle::exportLog() {
-    auto clock = std::chrono::system_clock::now();
-    std::time_t time = std::chrono::system_clock::to_time_t(clock);
+    auto now = std::chrono::system_clock::now();
+    std::time_t time = std::chrono::system_clock::to_time_t(now);
+
+    char *fname = static_cast<char*>(malloc(this->march_1->getName().size()
+                                            +this->march_2->getName().size()
+                                            +strlen(std::ctime(&time))
+                                            +7));
+
+    sprintf(fname, "%s_%s_%s.csv", this->march_1->getName().c_str(), 
+                                   this->march_2->getName().c_str(), 
+                                   std::ctime(&time));
     
-    char *fname = nullptr;
-    sprintf(fname, "%s_%s_%s.csv", this->march_1->getName().c_str(), this->march_2->getName().c_str(), std::ctime(&time));
     FILE *fp = fopen(fname, "w+");
 
     fprintf(fp, "M1_Troop_Cnt,Loss_1,Loss_2,M2_Troop_Cnt,Loss_1,Loss_2\n");
@@ -95,7 +102,7 @@ int Battle::exportLog() {
                                            static_cast<int>(this->log.at(turn).at(5)));
     } 
     fclose(fp);
-
+    free(fname);
     return 0;
 }
 

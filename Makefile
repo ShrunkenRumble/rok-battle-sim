@@ -1,33 +1,31 @@
-I_DIR := include
-S_DIR := src
-O_DIR := obj
-B_DIR := bin
-L_DIR := lib
+INC_DIR 			:= include
+SRC_DIR 			:= src
+OBJ_DIR 			:= build
+BIN_DIR 			:= bin
 
-SIM	:= $(B_DIR)/sim
-SRC := $(wildcard $(S_DIR)/*.cpp)
-OBJ := $(SRC:$(S_DIR)/%.cpp=$(O_DIR)/%.o)
+SIM	:= $(BIN_DIR)/sim
+SRC := $(wildcard $(SRC_DIR)/*.cpp)
+OBJ := $(SRC:$(SRC_DIR)/%.cpp=$(OBJ_DIR)/%.o)
 
-CXXPPFLAGS	:= -I$(I_DIR) -MMD -MP
-CXXFLAGS 	:= -std=c++11 -Wall
+CXXPPFLAGS	:= -I$(INC_DIR) -MMD -MP
+CXXFLAGS 	:= -std=c++20 -Wall
 CXX			:= g++
-LDFLAGS		:= -L$(L_DIR)
 LDLIBS		:= -lm
 
 .PHONY: all clean
 
 all: $(SIM)
 
-$(SIM): $(OBJ) | $(B_DIR)
-	$(CXX) $(LDFLAGS) $^ $(LDLIBS) -o $@
+$(SIM): $(OBJ) | $(BIN_DIR)
+	$(CXX) $^ $(LDLIBS) -o $@
 
-$(O_DIR)/%.o: $(S_DIR)/%.cpp | $(O_DIR)
+$(OBJ_DIR)/%.o: $(SRC_DIR)/%.cpp | $(OBJ_DIR)
 	$(CXX) $(CXXPPFLAGS) $(CXXFLAGS) -c $< -o $@
 
-$(B_DIR) $(O_DIR): 
+$(BIN_DIR) $(OBJ_DIR): 
 	mkdir -p $@
 
 clean:
-	@$(RM) -rv $(B_DIR) $(O_DIR)
+	@$(RM) -rv $(BIN_DIR) $(OBJ_DIR)
 	
 -include $(OBJ:.o=.d)

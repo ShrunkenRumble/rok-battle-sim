@@ -15,6 +15,7 @@ int main(int argc, char **argv) {
     Battle battle = Battle(&march_1, &march_2);
 
     battle.start();
+
     //battle.printLog();
     battle.exportLog();
     return 0;
