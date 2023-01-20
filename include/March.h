@@ -12,8 +12,7 @@ using namespace std;
 class March {
     public:
         March() {};
-        ~March() {delete troop;
-                  delete buffs;};
+        ~March() {};
         March(string name, double troop_cnt, double advantage, Troop *troop, Buffs *buffs);
         
         string getName();

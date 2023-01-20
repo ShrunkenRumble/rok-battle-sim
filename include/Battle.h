@@ -1,11 +1,15 @@
 #ifndef BATTLE_H_
 #define BATTLE_H_
 
-#include <math.h>
+#include <iostream>
+#include <chrono>
+#include <ctime>    
+#include <stdio.h>
 #include <string.h>
-#include <string>
 #include <cstring>
 #include <vector>
+#include <math.h>
+
 #include "March.h"
 
 using namespace std;
@@ -13,12 +17,12 @@ using namespace std;
 class Battle {
     public:
         Battle() {};
-        ~Battle() {delete march_1;
-                   delete march_2;};
+        ~Battle() {};
         Battle(March *march_1, March *march_2);
 
         void start();
         void printLog();
+        int exportLog();
         vector<vector<double>> getLog();
 
     private:

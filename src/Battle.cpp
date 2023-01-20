@@ -17,16 +17,16 @@ void Battle::start() {
         turn_log.push_back(this->march_2->getTroopCnt());
 
         // m1 attack, m2 counter
-        turn_log.push_back(this->march_1->getAttack() /             // m2 loss
-                           this->march_2->getDefense());           
-        turn_log.push_back(this->march_2->getCounterAttack() /      // m1 loss
-                           this->march_1->getDefense());    
+        turn_log.push_back(ceil(this->march_1->getAttack() /             // m2 loss
+                           this->march_2->getDefense()));           
+        turn_log.push_back(ceil(this->march_2->getCounterAttack() /      // m1 loss
+                           this->march_1->getDefense()));    
 
         // m2 attack, m1 counter
-        turn_log.push_back(this->march_2->getAttack() /             // m1 loss
-                           this->march_1->getDefense());           
-        turn_log.push_back(this->march_1->getCounterAttack() /      // m2 loss
-                           this->march_2->getDefense());   
+        turn_log.push_back(ceil(this->march_2->getAttack() /             // m1 loss
+                           this->march_1->getDefense()));           
+        turn_log.push_back(ceil(this->march_1->getCounterAttack() /      // m2 loss
+                           this->march_2->getDefense()));   
 
         // Turn log entry -> 0: m1 troop_cnt 
         //                   1: m2 troop_cnt
@@ -51,30 +51,52 @@ void Battle::printLog() {
     for (int turn = 0; turn < static_cast<int>(log.size()); turn++) {
         printf("#=====================================================================================#\n");
         printf("Turn %d \t\t\t\t\tUnits\t\tUnit Change\n",turn+1);
-        printf("[Our Side]\t\t\t\t%d\t\t\t-%d\n", static_cast<int>(ceil(this->log.at(turn).at(0))),                                   // m1 count
-                                                  static_cast<int>(ceil(this->log.at(turn).at(3))+ceil(this->log.at(turn).at(4))));   // m1 turn losses
-        printf("[Enemy]\t\t\t\t\t%d\t\t\t-%d\n", static_cast<int>(ceil(this->log.at(turn).at(1))),                                    // m2 count
-                                                 static_cast<int>(ceil(this->log.at(turn).at(2))+ceil(this->log.at(turn).at(5))));    // m2 turn losses
+        printf("[Our Side]\t\t\t\t%d\t\t\t-%d\n", static_cast<int>(this->log.at(turn).at(0)),                                   // m1 count
+                                                  static_cast<int>(this->log.at(turn).at(3)+this->log.at(turn).at(4)));   // m1 turn losses
+        printf("[Enemy]\t\t\t\t\t%d\t\t\t-%d\n", static_cast<int>(this->log.at(turn).at(1)),                                    // m2 count
+                                                 static_cast<int>(this->log.at(turn).at(2)+this->log.at(turn).at(5)));    // m2 turn losses
         printf("[%s] (%d) attacked [%s], [%s] lost %d units\n", this->march_1->getName().c_str(),                 
-                                                                static_cast<int>(ceil(this->log.at(turn).at(0))),
+                                                                static_cast<int>(this->log.at(turn).at(0)),
                                                                 this->march_2->getName().c_str(),
                                                                 this->march_2->getName().c_str(),
-                                                                static_cast<int>(ceil(this->log.at(turn).at(2))));
+                                                                static_cast<int>(this->log.at(turn).at(2)));
         printf("\t[%s] launched a counterattack, [%s] lost %d units\n", this->march_2->getName().c_str(),
                                                                         this->march_1->getName().c_str(),
-                                                                        static_cast<int>(ceil(this->log.at(turn).at(3))));
+                                                                        static_cast<int>(this->log.at(turn).at(3)));
         printf("[%s] (%d) attacked [%s], [%s] lost %d units\n", this->march_2->getName().c_str(),                 
-                                                                static_cast<int>(ceil(this->log.at(turn).at(1))),
+                                                                static_cast<int>(this->log.at(turn).at(1)),
                                                                 this->march_1->getName().c_str(),
                                                                 this->march_1->getName().c_str(),
-                                                                static_cast<int>(ceil(this->log.at(turn).at(4))));
+                                                                static_cast<int>(this->log.at(turn).at(4)));
         printf("\t[%s] launched a counterattack, [%s] lost %d units\n", this->march_1->getName().c_str(),
                                                                         this->march_2->getName().c_str(),
-                                                                        static_cast<int>(ceil(this->log.at(turn).at(5))));
+                                                                        static_cast<int>(this->log.at(turn).at(5)));
         printf("#=====================================================================================#\n");
     }
     printf("|                                         END                                         |\n");
     printf("#=====================================================================================#\n");
+}
+
+int Battle::exportLog() {
+    auto clock = std::chrono::system_clock::now();
+    std::time_t time = std::chrono::system_clock::to_time_t(clock);
+    
+    char *fname = nullptr;
+    sprintf(fname, "%s_%s_%s.csv", this->march_1->getName().c_str(), this->march_2->getName().c_str(), std::ctime(&time));
+    FILE *fp = fopen(fname, "w+");
+
+    fprintf(fp, "M1_Troop_Cnt,Loss_1,Loss_2,M2_Troop_Cnt,Loss_1,Loss_2\n");
+    for(int turn = 0; turn < static_cast<int>(this->log.size()); turn++) {
+        fprintf(fp, "%d,%d,%d,%d,%d,%d\n", static_cast<int>(this->log.at(turn).at(0)),
+                                           static_cast<int>(this->log.at(turn).at(3)),
+                                           static_cast<int>(this->log.at(turn).at(4)),
+                                           static_cast<int>(this->log.at(turn).at(1)),
+                                           static_cast<int>(this->log.at(turn).at(2)),
+                                           static_cast<int>(this->log.at(turn).at(5)));
+    } 
+    fclose(fp);
+
+    return 0;
 }
 
 vector<vector<double>> Battle::getLog() {

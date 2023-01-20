@@ -23,7 +23,8 @@ double March::getAttack() {
                     * (1 + this->buffs->getDmgBonus())
                     * sqrt(40000/this->troop_cnt));
     return attack;
-}   
+}  
+ 
 double March::getCounterAttack() {
     return this->getAttack();
 }
