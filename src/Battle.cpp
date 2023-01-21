@@ -84,9 +84,9 @@ int Battle::exportLog() {
     char *fname = static_cast<char*>(malloc(this->march_1->getName().size()
                                             +this->march_2->getName().size()
                                             +strlen(std::ctime(&time))
-                                            +7));
+                                            +14));
 
-    sprintf(fname, "%s_%s_%s.csv", this->march_1->getName().c_str(), 
+    sprintf(fname, "../log/%s_%s_%s.csv", this->march_1->getName().c_str(), 
                                    this->march_2->getName().c_str(), 
                                    std::ctime(&time));
     
