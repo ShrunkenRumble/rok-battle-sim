@@ -85,13 +85,16 @@ int Battle::exportLog() {
                                             +this->march_2->getName().size()
                                             +strlen(std::ctime(&time))
                                             +14));
-
-    sprintf(fname, "../log/%s_%s_%s.csv", this->march_1->getName().c_str(), 
+    // If running ROKC in main directory then this works. If running from inside build then need ../ instead of ./
+    sprintf(fname, "./log/%s_%s_%s.csv", this->march_1->getName().c_str(), 
                                    this->march_2->getName().c_str(), 
                                    std::ctime(&time));
+    FILE *fp;
+    if((fp = fopen(fname, "w")) == NULL){
+        printf ("ERROR: Fail to open: %s\n", fname);
+        return -1;
+    }
     
-    FILE *fp = fopen(fname, "w+");
-
     fprintf(fp, "M1_Troop_Cnt,Loss_1,Loss_2,M2_Troop_Cnt,Loss_1,Loss_2\n");
     for(int turn = 0; turn < static_cast<int>(this->log.size()); turn++) {
         fprintf(fp, "%d,%d,%d,%d,%d,%d\n", static_cast<int>(this->log.at(turn).at(0)),

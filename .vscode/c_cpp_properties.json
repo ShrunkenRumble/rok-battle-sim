@@ -3,7 +3,8 @@
         {
             "name": "Linux",
             "includePath": [
-                "${workspaceFolder}/**"
+                "${workspaceFolder}/**",
+                "/home/devin/Desktop/ROKC/include"
             ],
             "defines": [],
             "compilerPath": "/usr/bin/gcc",

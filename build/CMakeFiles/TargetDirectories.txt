@@ -1,0 +1,3 @@
+/home/devin/Desktop/ROKC/build/CMakeFiles/ROKC.dir
+/home/devin/Desktop/ROKC/build/CMakeFiles/edit_cache.dir
+/home/devin/Desktop/ROKC/build/CMakeFiles/rebuild_cache.dir
