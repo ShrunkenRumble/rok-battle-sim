@@ -1,5 +1,10 @@
 #include "Battle.h"
 
+// Attempt to correct the difference in actual dmg and predicted dmg for battles with marches over 35k troops
+double dmgAdjust(double troop_cnt, double dmg) {
+    return dmg+((0.00186*troop_cnt)-99.6);
+}
+
 Battle::Battle(March *march_1, March *march_2) {
     this->march_1 = march_1;
     this->march_2 = march_2;
@@ -8,7 +13,7 @@ Battle::Battle(March *march_1, March *march_2) {
 
 void Battle::run() {
     int turn = 1;
-
+    
     while (this->march_1->getTroopCnt() > 0 && this->march_2->getTroopCnt() > 0) {
         vector<double> turn_log = vector<double>();
         double m1_attack = 0, m2_attack = 0, m1_counter = 0, m2_counter = 0;
@@ -19,12 +24,12 @@ void Battle::run() {
         this->march_2->updateRage(m2_rage);
 
         // m1 attack, m2 counter
-        m1_attack = ceil(this->march_1->getAttack() / this->march_2->getDefense());          // m2 losses
-        m2_counter = ceil(this->march_2->getCounterAttack() / this->march_1->getDefense());  // m1 losses 
+        m1_attack = ceil(dmgAdjust(this->march_1->getTroopCnt(), this->march_1->getAttack() / this->march_2->getDefense()));          // m2 losses
+        m2_counter = ceil(dmgAdjust(this->march_2->getTroopCnt(), this->march_2->getCounterAttack() / this->march_1->getDefense()));  // m1 losses 
 
         // m2 attack, m1 counter
-        m2_attack = ceil(this->march_2->getAttack() / this->march_1->getDefense());          // m1 losses
-        m1_counter = ceil(this->march_1->getCounterAttack() / this->march_2->getDefense());  // m2 losses
+        m2_attack = ceil(dmgAdjust(this->march_2->getTroopCnt(), this->march_2->getAttack() / this->march_1->getDefense()));          // m1 losses
+        m1_counter = ceil(dmgAdjust(this->march_1->getTroopCnt(), this->march_1->getCounterAttack() / this->march_2->getDefense()));  // m2 losses
 
         if (this->march_1->getRage() >= 1000) {
             m1_skill_dmg = ceil((m1_attack+m1_counter)*((get<0>(this->march_1->getSkillDmgFac()) / 400) + (get<1>(this->march_1->getSkillDmgFac()) / 400)));  // m2 losses
