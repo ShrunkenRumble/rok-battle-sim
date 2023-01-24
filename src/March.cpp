@@ -8,6 +8,7 @@ March::March(string name, double troop_cnt, double advantage, Troop *troop, Buff
     this->buffs = buffs;
     this->prim_comm = prim_comm;
     this->sec_comm = sec_comm;
+    this->rage = 0;
 }
 
 string March::getName() {
@@ -44,7 +45,7 @@ double March::getDefense() {
 }
 
 /*
-rage cap 220
+rage cap 220 (debuffs are applied after rage reduced to 220 cap)
 +86 rage for attack
 +16 rage for counter (+16 for each additional march hit with counter)
     Unclear: Do you also get +10 rage comp if ur counter < their attack for each additional march???
