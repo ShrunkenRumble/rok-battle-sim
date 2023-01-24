@@ -177,6 +177,30 @@ src/Buffs.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/ROKC.dir/build.make CMakeFiles/ROKC.dir/src/Buffs.cpp.s
 .PHONY : src/Buffs.cpp.s
 
+src/Commander.o: src/Commander.cpp.o
+.PHONY : src/Commander.o
+
+# target to build an object file
+src/Commander.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/ROKC.dir/build.make CMakeFiles/ROKC.dir/src/Commander.cpp.o
+.PHONY : src/Commander.cpp.o
+
+src/Commander.i: src/Commander.cpp.i
+.PHONY : src/Commander.i
+
+# target to preprocess a source file
+src/Commander.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/ROKC.dir/build.make CMakeFiles/ROKC.dir/src/Commander.cpp.i
+.PHONY : src/Commander.cpp.i
+
+src/Commander.s: src/Commander.cpp.s
+.PHONY : src/Commander.s
+
+# target to generate assembly for a file
+src/Commander.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/ROKC.dir/build.make CMakeFiles/ROKC.dir/src/Commander.cpp.s
+.PHONY : src/Commander.cpp.s
+
 src/March.o: src/March.cpp.o
 .PHONY : src/March.o
 
@@ -264,6 +288,9 @@ help:
 	@echo "... src/Buffs.o"
 	@echo "... src/Buffs.i"
 	@echo "... src/Buffs.s"
+	@echo "... src/Commander.o"
+	@echo "... src/Commander.i"
+	@echo "... src/Commander.s"
 	@echo "... src/March.o"
 	@echo "... src/March.i"
 	@echo "... src/March.s"

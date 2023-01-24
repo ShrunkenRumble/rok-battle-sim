@@ -1,1 +1,1 @@
-/usr/bin/c++ CMakeFiles/ROKC.dir/src/Battle.cpp.o CMakeFiles/ROKC.dir/src/Buffs.cpp.o CMakeFiles/ROKC.dir/src/March.cpp.o CMakeFiles/ROKC.dir/src/Simulator.cpp.o CMakeFiles/ROKC.dir/src/Troop.cpp.o -o ../bin/ROKC 
+/usr/bin/c++ CMakeFiles/ROKC.dir/src/Battle.cpp.o CMakeFiles/ROKC.dir/src/Buffs.cpp.o CMakeFiles/ROKC.dir/src/Commander.cpp.o CMakeFiles/ROKC.dir/src/March.cpp.o CMakeFiles/ROKC.dir/src/Simulator.cpp.o CMakeFiles/ROKC.dir/src/Troop.cpp.o -o ../bin/ROKC 

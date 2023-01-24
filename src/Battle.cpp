@@ -6,27 +6,43 @@ Battle::Battle(March *march_1, March *march_2) {
     this->log = vector<vector<double>>();
 }
 
-void Battle::start() {
+void Battle::run() {
     int turn = 1;
 
     while (this->march_1->getTroopCnt() > 0 && this->march_2->getTroopCnt() > 0) {
         vector<double> turn_log = vector<double>();
-
-        // Log the troop cnts
-        turn_log.push_back(this->march_1->getTroopCnt());
-        turn_log.push_back(this->march_2->getTroopCnt());
-
+        double m1_attack, m2_attack, m1_counter, m2_counter = 0;
+        double m1_skill_dmg, m2_skill_dmg = 0;
+        
         // m1 attack, m2 counter
-        turn_log.push_back(ceil(this->march_1->getAttack() /             // m2 loss
-                           this->march_2->getDefense()));           
-        turn_log.push_back(ceil(this->march_2->getCounterAttack() /      // m1 loss
-                           this->march_1->getDefense()));    
+        m1_attack = ceil(this->march_1->getAttack() / this->march_2->getDefense());          // m2 losses
+        m2_counter = ceil(this->march_2->getCounterAttack() / this->march_1->getDefense());  // m1 losses 
 
         // m2 attack, m1 counter
-        turn_log.push_back(ceil(this->march_2->getAttack() /             // m1 loss
-                           this->march_1->getDefense()));           
-        turn_log.push_back(ceil(this->march_1->getCounterAttack() /      // m2 loss
-                           this->march_2->getDefense()));   
+        m2_attack = ceil(this->march_2->getAttack() / this->march_1->getDefense());          // m1 losses
+        m1_counter = ceil(this->march_1->getCounterAttack() / this->march_2->getDefense());  // m2 losses
+
+        if (this->march_1->getRage() >= 1000) {
+            m1_skill_dmg = ceil((m1_attack+m1_counter)*((get<0>(this->march_1->getSkillDmgFac()) / 400) + (get<1>(this->march_1->getSkillDmgFac()) / 400)));  // m2 losses
+        }
+        if (this->march_2->getRage() >= 1000) {
+            m2_skill_dmg = ceil((m2_attack+m2_counter)*((get<0>(this->march_2->getSkillDmgFac()) / 400) + (get<1>(this->march_2->getSkillDmgFac()) / 400)));  // m1 losses
+        }
+
+        // update rage for next turn
+        double m1_rage, m2_rage = 102;
+        if (m1_attack < m2_counter) {
+            m1_rage += 10;
+        } else {
+            m2_rage += 10;
+        }
+        if (m2_attack < m1_counter) {
+            m2_rage += 10;
+        } else {
+            m1_rage += 10;
+        }
+        this->march_1->updateRage(m1_rage);
+        this->march_2->updateRage(m2_rage);
 
         // Turn log entry -> 0: m1 troop_cnt 
         //                   1: m2 troop_cnt
@@ -34,10 +50,24 @@ void Battle::start() {
         //                   3: m1 loss from m2 counter
         //                   4: m1 loss from m2 attack
         //                   5: m2 loss from m1 counter
+        //                   6: m2 loss from m1 skill dmg
+        //                   7: m1 loss from m2 skill dmg
+        //                   8: m1 rage generated during turn
+        //                   9: m2 rage generated during turn
+        turn_log.push_back(this->march_1->getTroopCnt());
+        turn_log.push_back(this->march_2->getTroopCnt());
+        turn_log.push_back(m1_attack);
+        turn_log.push_back(m2_counter);
+        turn_log.push_back(m2_attack);
+        turn_log.push_back(m1_counter);
+        turn_log.push_back(m1_skill_dmg);
+        turn_log.push_back(m2_skill_dmg);
+        turn_log.push_back(m1_rage);
+        turn_log.push_back(m2_rage);
 
         // Apply losses to each march
-        this->march_1->update(turn, turn_log.at(3) + turn_log.at(4));
-        this->march_2->update(turn, turn_log.at(2) + turn_log.at(5));
+        this->march_1->updateTroopCnt(turn, turn_log.at(3) + turn_log.at(4) + turn_log.at(7));
+        this->march_2->updateTroopCnt(turn, turn_log.at(2) + turn_log.at(5) + turn_log.at(6));
 
         // Add turn log to battle log
         this->log.push_back(turn_log);
@@ -95,14 +125,18 @@ int Battle::exportLog() {
         return -1;
     }
     
-    fprintf(fp, "M1_Troop_Cnt,Loss_1,Loss_2,M2_Troop_Cnt,Loss_1,Loss_2\n");
+    fprintf(fp, "M1_Troop_Cnt,Loss_1,Loss_2,Skill_Loss,Turn_Rage,M2_Troop_Cnt,Loss_1,Loss_2,Skill_Loss,Turn_Rage\n");
     for(int turn = 0; turn < static_cast<int>(this->log.size()); turn++) {
-        fprintf(fp, "%d,%d,%d,%d,%d,%d\n", static_cast<int>(this->log.at(turn).at(0)),
-                                           static_cast<int>(this->log.at(turn).at(3)),
-                                           static_cast<int>(this->log.at(turn).at(4)),
-                                           static_cast<int>(this->log.at(turn).at(1)),
-                                           static_cast<int>(this->log.at(turn).at(2)),
-                                           static_cast<int>(this->log.at(turn).at(5)));
+        fprintf(fp, "%d,%d,%d,%d,%d,%d,%d,%d,%d,%d\n", static_cast<int>(this->log.at(turn).at(0)),
+                                                       static_cast<int>(this->log.at(turn).at(3)),
+                                                       static_cast<int>(this->log.at(turn).at(4)),
+                                                       static_cast<int>(this->log.at(turn).at(7)),
+                                                       static_cast<int>(this->log.at(turn).at(8)),
+                                                       static_cast<int>(this->log.at(turn).at(1)),
+                                                       static_cast<int>(this->log.at(turn).at(2)),
+                                                       static_cast<int>(this->log.at(turn).at(5)),
+                                                       static_cast<int>(this->log.at(turn).at(6)),
+                                                       static_cast<int>(this->log.at(turn).at(9)));
     } 
     fclose(fp);
     free(fname);

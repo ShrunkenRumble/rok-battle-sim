@@ -20,7 +20,7 @@ class Battle {
         ~Battle() {};
         Battle(March *march_1, March *march_2);
 
-        void start();
+        void run();
         void printLog();
         int exportLog();
         vector<vector<double>> getLog();

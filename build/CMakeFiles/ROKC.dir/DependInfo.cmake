@@ -10,6 +10,7 @@ set(CMAKE_DEPENDS_LANGUAGES
 set(CMAKE_DEPENDS_DEPENDENCY_FILES
   "/home/devin/Desktop/ROKC/src/Battle.cpp" "CMakeFiles/ROKC.dir/src/Battle.cpp.o" "gcc" "CMakeFiles/ROKC.dir/src/Battle.cpp.o.d"
   "/home/devin/Desktop/ROKC/src/Buffs.cpp" "CMakeFiles/ROKC.dir/src/Buffs.cpp.o" "gcc" "CMakeFiles/ROKC.dir/src/Buffs.cpp.o.d"
+  "/home/devin/Desktop/ROKC/src/Commander.cpp" "CMakeFiles/ROKC.dir/src/Commander.cpp.o" "gcc" "CMakeFiles/ROKC.dir/src/Commander.cpp.o.d"
   "/home/devin/Desktop/ROKC/src/March.cpp" "CMakeFiles/ROKC.dir/src/March.cpp.o" "gcc" "CMakeFiles/ROKC.dir/src/March.cpp.o.d"
   "/home/devin/Desktop/ROKC/src/Simulator.cpp" "CMakeFiles/ROKC.dir/src/Simulator.cpp.o" "gcc" "CMakeFiles/ROKC.dir/src/Simulator.cpp.o.d"
   "/home/devin/Desktop/ROKC/src/Troop.cpp" "CMakeFiles/ROKC.dir/src/Troop.cpp.o" "gcc" "CMakeFiles/ROKC.dir/src/Troop.cpp.o.d"
