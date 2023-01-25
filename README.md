@@ -1,5 +1,5 @@
 # ROKC
-A Rise of Kingdoms combat simulator, written in C/C++, currently attempting to simulate an open-field 1 vs. 1 battle utilizing the approximated underlying game mechanics found at:  
+A Rise of Kingdoms combat calculator, written in C/C++, currently attempting to simulate an open-field 1 vs. 1 battle utilizing the approximated underlying game mechanics found at:  
 https://web.archive.org/web/20210815042545/https://everythingrok.com/uncovering-the-combat-formula/.
  
  ## How To Run:
