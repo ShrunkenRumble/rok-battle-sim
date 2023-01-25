@@ -6,7 +6,7 @@ https://web.archive.org/web/20210815042545/https://everythingrok.com/uncovering-
 My development environment: CMake v3.10+, GCC/G++ v9.4+, Ubuntu 20.04 LTS  
   
 Once you've cloned the repo follow these steps to compile & run the code.
-  1. `mkdir build`   
+  1. `mkdir build` (If "build" folder already exists, remove it.)   
   2. `cd build`  
   3. `cmake ..`  
   4. `make` or `cmake --build` (makes no difference)  
