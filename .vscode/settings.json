@@ -4,5 +4,6 @@
         "chrono": "cpp",
         "type_traits": "cpp",
         "string": "cpp"
-    }
+    },
+    "C_Cpp.errorSquiggles": "enabledIfIncludesResolve"
 }

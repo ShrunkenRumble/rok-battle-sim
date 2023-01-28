@@ -64,15 +64,32 @@ CMAKE_BINARY_DIR = /home/devin/Desktop/ROKC/build
 
 # The main recursive "all" target.
 all: CMakeFiles/ROKC.dir/all
+all: lib/matplotlib-cpp/all
 .PHONY : all
 
 # The main recursive "preinstall" target.
-preinstall:
+preinstall: lib/matplotlib-cpp/preinstall
 .PHONY : preinstall
 
 # The main recursive "clean" target.
 clean: CMakeFiles/ROKC.dir/clean
+clean: lib/matplotlib-cpp/clean
 .PHONY : clean
+
+#=============================================================================
+# Directory level rules for directory lib/matplotlib-cpp
+
+# Recursive "all" directory target.
+lib/matplotlib-cpp/all:
+.PHONY : lib/matplotlib-cpp/all
+
+# Recursive "preinstall" directory target.
+lib/matplotlib-cpp/preinstall:
+.PHONY : lib/matplotlib-cpp/preinstall
+
+# Recursive "clean" directory target.
+lib/matplotlib-cpp/clean:
+.PHONY : lib/matplotlib-cpp/clean
 
 #=============================================================================
 # Target rules for target CMakeFiles/ROKC.dir

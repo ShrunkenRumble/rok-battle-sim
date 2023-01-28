@@ -24,7 +24,8 @@ double March::getAttack() {
                     * this->troop->getAtk()
                     * (1 + this->buffs->getAtkBonus())
                     * (1 + this->buffs->getDmgBonus())
-                    * sqrt(40000/this->troop_cnt));
+                    * sqrt(1 / this->troop_cnt)
+                    * (2 + (this->troop_cnt/333333)));
     return attack;
 }  
  
@@ -56,15 +57,14 @@ If m1 counter < m2 attack
 m1 +10 rage
 
 Rage grows 10% faster when troops below 30%??
-Rage count is reset to 0 after each active skill??
-    - Yes because otherwise rage would coninuously accrue
 Rage gained from firing active skill??
+Rage gained from passive skills that do dmg??
 */
 void March::updateRage(double rage_chg) {
     this->rage += rage_chg;
 }
 
-void March::updateTroopCnt(int turn, double loss) {
+void March::updateTroopCnt(double loss) {
     this->troop_cnt -= loss;
 }
 

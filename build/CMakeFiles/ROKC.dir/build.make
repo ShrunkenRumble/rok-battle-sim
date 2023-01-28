@@ -172,6 +172,7 @@ ROKC_EXTERNAL_OBJECTS =
 ../bin/ROKC: CMakeFiles/ROKC.dir/src/Simulator.cpp.o
 ../bin/ROKC: CMakeFiles/ROKC.dir/src/Troop.cpp.o
 ../bin/ROKC: CMakeFiles/ROKC.dir/build.make
+../bin/ROKC: /usr/lib/x86_64-linux-gnu/libpython3.10.so
 ../bin/ROKC: CMakeFiles/ROKC.dir/link.txt
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/devin/Desktop/ROKC/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Linking CXX executable ../bin/ROKC"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/ROKC.dir/link.txt --verbose=$(VERBOSE)

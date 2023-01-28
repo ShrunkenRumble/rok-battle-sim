@@ -26,8 +26,7 @@ class March {
         double getDefense();
 
         void updateRage(double rage_chg);
-        
-        void updateTroopCnt(int turn, double loss);
+        void updateTroopCnt(double loss);
     private:
         double troop_cnt;
         double advantage;

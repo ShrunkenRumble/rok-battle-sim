@@ -9,6 +9,7 @@
 #include <cstring>
 #include <vector>
 #include <math.h>
+#include "matplotlibcpp.h"
 
 #include "March.h"
 

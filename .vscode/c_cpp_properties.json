@@ -4,7 +4,11 @@
             "name": "Linux",
             "includePath": [
                 "${workspaceFolder}/**",
-                "/home/devin/Desktop/ROKC/include"
+                "/home/devin/Desktop/ROKC/include",
+                "/home/devin/Desktop/ROKC/lib/**",
+                "/usr/include/python2.7",
+                "/usr/include/python3.10",
+                "${workspaceFolder}/lib/matplotlib-cpp"
             ],
             "defines": [],
             "compilerPath": "/usr/bin/gcc",

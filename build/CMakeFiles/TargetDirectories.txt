@@ -1,3 +1,13 @@
 /home/devin/Desktop/ROKC/build/CMakeFiles/ROKC.dir
 /home/devin/Desktop/ROKC/build/CMakeFiles/edit_cache.dir
 /home/devin/Desktop/ROKC/build/CMakeFiles/rebuild_cache.dir
+/home/devin/Desktop/ROKC/build/CMakeFiles/list_install_components.dir
+/home/devin/Desktop/ROKC/build/CMakeFiles/install.dir
+/home/devin/Desktop/ROKC/build/CMakeFiles/install/local.dir
+/home/devin/Desktop/ROKC/build/CMakeFiles/install/strip.dir
+/home/devin/Desktop/ROKC/build/lib/matplotlib-cpp/CMakeFiles/edit_cache.dir
+/home/devin/Desktop/ROKC/build/lib/matplotlib-cpp/CMakeFiles/rebuild_cache.dir
+/home/devin/Desktop/ROKC/build/lib/matplotlib-cpp/CMakeFiles/list_install_components.dir
+/home/devin/Desktop/ROKC/build/lib/matplotlib-cpp/CMakeFiles/install.dir
+/home/devin/Desktop/ROKC/build/lib/matplotlib-cpp/CMakeFiles/install/local.dir
+/home/devin/Desktop/ROKC/build/lib/matplotlib-cpp/CMakeFiles/install/strip.dir

@@ -1,8 +1,9 @@
 #include "Battle.h"
 
-// Attempt to correct the difference in actual dmg and predicted dmg for battles with marches over 35k troops
-double dmgAdjust(double troop_cnt, double dmg) {
-    return dmg+((0.00186*troop_cnt)-99.6);
+double calcLoss(double atk, double def) {
+    double base_loss = atk / def;
+    double adj_loss = base_loss * sqrt(10000);
+    return ceil(adj_loss);
 }
 
 Battle::Battle(March *march_1, March *march_2) {
@@ -12,25 +13,27 @@ Battle::Battle(March *march_1, March *march_2) {
 }
 
 void Battle::run() {
-    int turn = 1;
-    
+
     while (this->march_1->getTroopCnt() > 0 && this->march_2->getTroopCnt() > 0) {
         vector<double> turn_log = vector<double>();
         double m1_attack = 0, m2_attack = 0, m1_counter = 0, m2_counter = 0;
         double m1_skill_dmg = 0, m2_skill_dmg = 0;
         double m1_rage = 102, m2_rage = 102;
 
+        // Add base rage generated from this turn
         this->march_1->updateRage(m1_rage);
         this->march_2->updateRage(m2_rage);
 
-        // m1 attack, m2 counter
-        m1_attack = ceil(dmgAdjust(this->march_1->getTroopCnt(), this->march_1->getAttack() / this->march_2->getDefense()));          // m2 losses
-        m2_counter = ceil(dmgAdjust(this->march_2->getTroopCnt(), this->march_2->getCounterAttack() / this->march_1->getDefense()));  // m1 losses 
+        // Calculate m1 attack, m2 counter
+        m1_attack = calcLoss(this->march_1->getAttack(), this->march_2->getDefense());          // m2 losses
+        m2_counter = calcLoss(this->march_2->getCounterAttack(), this->march_1->getDefense());  // m1 losses 
 
-        // m2 attack, m1 counter
-        m2_attack = ceil(dmgAdjust(this->march_2->getTroopCnt(), this->march_2->getAttack() / this->march_1->getDefense()));          // m1 losses
-        m1_counter = ceil(dmgAdjust(this->march_1->getTroopCnt(), this->march_1->getCounterAttack() / this->march_2->getDefense()));  // m2 losses
-
+        // Calculate m2 attack, m1 counter
+        m2_attack = calcLoss(this->march_2->getAttack(), this->march_1->getDefense());          // m1 losses
+        m1_counter = calcLoss(this->march_1->getCounterAttack(), this->march_2->getDefense());  // m2 losses
+        
+        
+        // Calculate skill damage
         if (this->march_1->getRage() >= 1000) {
             m1_skill_dmg = ceil((m1_attack+m1_counter)*((get<0>(this->march_1->getSkillDmgFac()) / 400) + (get<1>(this->march_1->getSkillDmgFac()) / 400)));  // m2 losses
             this->march_1->updateRage(this->march_1->getRage()*-1);       
@@ -39,8 +42,8 @@ void Battle::run() {
             m2_skill_dmg = ceil((m2_attack+m2_counter)*((get<0>(this->march_2->getSkillDmgFac()) / 400) + (get<1>(this->march_2->getSkillDmgFac()) / 400)));  // m1 losses
             this->march_2->updateRage(this->march_2->getRage()*-1);   
         }
-
-        // Update rage for next turn
+        
+        // Apply rage compensation
         if (m1_attack < m2_counter) {
             m1_rage += 10;
             this->march_1->updateRage(10);
@@ -55,7 +58,7 @@ void Battle::run() {
             m1_rage += 10;
             this->march_1->updateRage(10);
         }
-
+        
         // Turn log entry -> 0: m1 troop_cnt 
         //                   1: m2 troop_cnt
         //                   2: m2 loss from m1 attack
@@ -82,12 +85,11 @@ void Battle::run() {
         turn_log.push_back(this->march_2->getRage());
 
         // Apply losses to each march
-        this->march_1->updateTroopCnt(turn, turn_log.at(3) + turn_log.at(4) + turn_log.at(7));
-        this->march_2->updateTroopCnt(turn, turn_log.at(2) + turn_log.at(5) + turn_log.at(6));
+        this->march_1->updateTroopCnt(turn_log.at(3) + turn_log.at(4) + turn_log.at(7));
+        this->march_2->updateTroopCnt(turn_log.at(2) + turn_log.at(5) + turn_log.at(6));
 
         // Add turn log to battle log
         this->log.push_back(turn_log);
-        turn++;
     }
 }
 
