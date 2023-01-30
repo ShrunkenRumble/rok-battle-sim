@@ -4,7 +4,7 @@
 # compile CXX with /usr/bin/c++
 CXX_DEFINES = 
 
-CXX_INCLUDES = -I/home/devin/Desktop/ROKC/include
+CXX_INCLUDES = -I/home/devin/Desktop/ROKC/include -I/home/devin/Desktop/ROKC/lib/matplotlib-cpp -I/home/devin/Desktop/ROKC/lib/matplotlib-cpp/examples -isystem /usr/include/python3.10 -isystem /usr/lib/python3/dist-packages/numpy/core/include
 
 CXX_FLAGS = -std=gnu++20
 

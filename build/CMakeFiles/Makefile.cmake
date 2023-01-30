@@ -10,6 +10,8 @@ set(CMAKE_MAKEFILE_DEPENDS
   "../CMakeLists.txt"
   "CMakeFiles/3.22.1/CMakeCXXCompiler.cmake"
   "CMakeFiles/3.22.1/CMakeSystem.cmake"
+  "../lib/matplotlib-cpp/CMakeLists.txt"
+  "../lib/matplotlib-cpp/cmake/matplotlib_cppConfig.cmake.in"
   "/usr/share/cmake-3.22/Modules/CMakeCXXCompiler.cmake.in"
   "/usr/share/cmake-3.22/Modules/CMakeCXXCompilerABI.cpp"
   "/usr/share/cmake-3.22/Modules/CMakeCXXInformation.cmake"
@@ -25,6 +27,7 @@ set(CMAKE_MAKEFILE_DEPENDS
   "/usr/share/cmake-3.22/Modules/CMakeGenericSystem.cmake"
   "/usr/share/cmake-3.22/Modules/CMakeInitializeConfigs.cmake"
   "/usr/share/cmake-3.22/Modules/CMakeLanguageInformation.cmake"
+  "/usr/share/cmake-3.22/Modules/CMakePackageConfigHelpers.cmake"
   "/usr/share/cmake-3.22/Modules/CMakeParseImplicitIncludeInfo.cmake"
   "/usr/share/cmake-3.22/Modules/CMakeParseImplicitLinkInfo.cmake"
   "/usr/share/cmake-3.22/Modules/CMakeParseLibraryArchitecture.cmake"
@@ -72,12 +75,18 @@ set(CMAKE_MAKEFILE_DEPENDS
   "/usr/share/cmake-3.22/Modules/Compiler/XL-CXX-DetermineCompiler.cmake"
   "/usr/share/cmake-3.22/Modules/Compiler/XLClang-CXX-DetermineCompiler.cmake"
   "/usr/share/cmake-3.22/Modules/Compiler/zOS-CXX-DetermineCompiler.cmake"
+  "/usr/share/cmake-3.22/Modules/FindPackageHandleStandardArgs.cmake"
+  "/usr/share/cmake-3.22/Modules/FindPackageMessage.cmake"
+  "/usr/share/cmake-3.22/Modules/FindPython/Support.cmake"
+  "/usr/share/cmake-3.22/Modules/FindPython3.cmake"
+  "/usr/share/cmake-3.22/Modules/GNUInstallDirs.cmake"
   "/usr/share/cmake-3.22/Modules/Internal/FeatureTesting.cmake"
   "/usr/share/cmake-3.22/Modules/Platform/Linux-Determine-CXX.cmake"
   "/usr/share/cmake-3.22/Modules/Platform/Linux-GNU-CXX.cmake"
   "/usr/share/cmake-3.22/Modules/Platform/Linux-GNU.cmake"
   "/usr/share/cmake-3.22/Modules/Platform/Linux.cmake"
   "/usr/share/cmake-3.22/Modules/Platform/UnixPaths.cmake"
+  "/usr/share/cmake-3.22/Modules/WriteBasicConfigVersionFile.cmake"
   )
 
 # The corresponding makefile is:
@@ -92,6 +101,8 @@ set(CMAKE_MAKEFILE_PRODUCTS
   "CMakeFiles/3.22.1/CMakeCXXCompiler.cmake"
   "CMakeFiles/3.22.1/CMakeCXXCompiler.cmake"
   "CMakeFiles/CMakeDirectoryInformation.cmake"
+  "lib/matplotlib-cpp/matplotlib_cppConfig.cmake"
+  "lib/matplotlib-cpp/CMakeFiles/CMakeDirectoryInformation.cmake"
   )
 
 # Dependency information for all targets:

@@ -9,6 +9,7 @@
 #include <cstring>
 #include <vector>
 #include <math.h>
+#include "matplotlibcpp.h"
 
 #include "March.h"
 
@@ -20,7 +21,7 @@ class Battle {
         ~Battle() {};
         Battle(March *march_1, March *march_2);
 
-        void start();
+        void run();
         void printLog();
         int exportLog();
         vector<vector<double>> getLog();

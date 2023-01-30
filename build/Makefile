@@ -85,6 +85,51 @@ rebuild_cache:
 rebuild_cache/fast: rebuild_cache
 .PHONY : rebuild_cache/fast
 
+# Special rule for the target list_install_components
+list_install_components:
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Available install components are: \"Unspecified\""
+.PHONY : list_install_components
+
+# Special rule for the target list_install_components
+list_install_components/fast: list_install_components
+.PHONY : list_install_components/fast
+
+# Special rule for the target install
+install: preinstall
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Install the project..."
+	/usr/bin/cmake -P cmake_install.cmake
+.PHONY : install
+
+# Special rule for the target install
+install/fast: preinstall/fast
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Install the project..."
+	/usr/bin/cmake -P cmake_install.cmake
+.PHONY : install/fast
+
+# Special rule for the target install/local
+install/local: preinstall
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Installing only the local directory..."
+	/usr/bin/cmake -DCMAKE_INSTALL_LOCAL_ONLY=1 -P cmake_install.cmake
+.PHONY : install/local
+
+# Special rule for the target install/local
+install/local/fast: preinstall/fast
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Installing only the local directory..."
+	/usr/bin/cmake -DCMAKE_INSTALL_LOCAL_ONLY=1 -P cmake_install.cmake
+.PHONY : install/local/fast
+
+# Special rule for the target install/strip
+install/strip: preinstall
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Installing the project stripped..."
+	/usr/bin/cmake -DCMAKE_INSTALL_DO_STRIP=1 -P cmake_install.cmake
+.PHONY : install/strip
+
+# Special rule for the target install/strip
+install/strip/fast: preinstall/fast
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Installing the project stripped..."
+	/usr/bin/cmake -DCMAKE_INSTALL_DO_STRIP=1 -P cmake_install.cmake
+.PHONY : install/strip/fast
+
 # The main all target
 all: cmake_check_build_system
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/devin/Desktop/ROKC/build/CMakeFiles /home/devin/Desktop/ROKC/build//CMakeFiles/progress.marks
@@ -177,6 +222,30 @@ src/Buffs.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/ROKC.dir/build.make CMakeFiles/ROKC.dir/src/Buffs.cpp.s
 .PHONY : src/Buffs.cpp.s
 
+src/Commander.o: src/Commander.cpp.o
+.PHONY : src/Commander.o
+
+# target to build an object file
+src/Commander.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/ROKC.dir/build.make CMakeFiles/ROKC.dir/src/Commander.cpp.o
+.PHONY : src/Commander.cpp.o
+
+src/Commander.i: src/Commander.cpp.i
+.PHONY : src/Commander.i
+
+# target to preprocess a source file
+src/Commander.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/ROKC.dir/build.make CMakeFiles/ROKC.dir/src/Commander.cpp.i
+.PHONY : src/Commander.cpp.i
+
+src/Commander.s: src/Commander.cpp.s
+.PHONY : src/Commander.s
+
+# target to generate assembly for a file
+src/Commander.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/ROKC.dir/build.make CMakeFiles/ROKC.dir/src/Commander.cpp.s
+.PHONY : src/Commander.cpp.s
+
 src/March.o: src/March.cpp.o
 .PHONY : src/March.o
 
@@ -256,6 +325,10 @@ help:
 	@echo "... clean"
 	@echo "... depend"
 	@echo "... edit_cache"
+	@echo "... install"
+	@echo "... install/local"
+	@echo "... install/strip"
+	@echo "... list_install_components"
 	@echo "... rebuild_cache"
 	@echo "... ROKC"
 	@echo "... src/Battle.o"
@@ -264,6 +337,9 @@ help:
 	@echo "... src/Buffs.o"
 	@echo "... src/Buffs.i"
 	@echo "... src/Buffs.s"
+	@echo "... src/Commander.o"
+	@echo "... src/Commander.i"
+	@echo "... src/Commander.s"
 	@echo "... src/March.o"
 	@echo "... src/March.i"
 	@echo "... src/March.s"

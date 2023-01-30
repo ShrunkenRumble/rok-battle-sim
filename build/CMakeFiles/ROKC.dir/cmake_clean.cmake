@@ -5,6 +5,8 @@ file(REMOVE_RECURSE
   "CMakeFiles/ROKC.dir/src/Battle.cpp.o.d"
   "CMakeFiles/ROKC.dir/src/Buffs.cpp.o"
   "CMakeFiles/ROKC.dir/src/Buffs.cpp.o.d"
+  "CMakeFiles/ROKC.dir/src/Commander.cpp.o"
+  "CMakeFiles/ROKC.dir/src/Commander.cpp.o.d"
   "CMakeFiles/ROKC.dir/src/March.cpp.o"
   "CMakeFiles/ROKC.dir/src/March.cpp.o.d"
   "CMakeFiles/ROKC.dir/src/Simulator.cpp.o"

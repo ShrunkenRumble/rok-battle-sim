@@ -97,10 +97,24 @@ CMakeFiles/ROKC.dir/src/Buffs.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/ROKC.dir/src/Buffs.cpp.s"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/devin/Desktop/ROKC/src/Buffs.cpp -o CMakeFiles/ROKC.dir/src/Buffs.cpp.s
 
+CMakeFiles/ROKC.dir/src/Commander.cpp.o: CMakeFiles/ROKC.dir/flags.make
+CMakeFiles/ROKC.dir/src/Commander.cpp.o: ../src/Commander.cpp
+CMakeFiles/ROKC.dir/src/Commander.cpp.o: CMakeFiles/ROKC.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/devin/Desktop/ROKC/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/ROKC.dir/src/Commander.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/ROKC.dir/src/Commander.cpp.o -MF CMakeFiles/ROKC.dir/src/Commander.cpp.o.d -o CMakeFiles/ROKC.dir/src/Commander.cpp.o -c /home/devin/Desktop/ROKC/src/Commander.cpp
+
+CMakeFiles/ROKC.dir/src/Commander.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/ROKC.dir/src/Commander.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/devin/Desktop/ROKC/src/Commander.cpp > CMakeFiles/ROKC.dir/src/Commander.cpp.i
+
+CMakeFiles/ROKC.dir/src/Commander.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/ROKC.dir/src/Commander.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/devin/Desktop/ROKC/src/Commander.cpp -o CMakeFiles/ROKC.dir/src/Commander.cpp.s
+
 CMakeFiles/ROKC.dir/src/March.cpp.o: CMakeFiles/ROKC.dir/flags.make
 CMakeFiles/ROKC.dir/src/March.cpp.o: ../src/March.cpp
 CMakeFiles/ROKC.dir/src/March.cpp.o: CMakeFiles/ROKC.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/devin/Desktop/ROKC/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/ROKC.dir/src/March.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/devin/Desktop/ROKC/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/ROKC.dir/src/March.cpp.o"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/ROKC.dir/src/March.cpp.o -MF CMakeFiles/ROKC.dir/src/March.cpp.o.d -o CMakeFiles/ROKC.dir/src/March.cpp.o -c /home/devin/Desktop/ROKC/src/March.cpp
 
 CMakeFiles/ROKC.dir/src/March.cpp.i: cmake_force
@@ -114,7 +128,7 @@ CMakeFiles/ROKC.dir/src/March.cpp.s: cmake_force
 CMakeFiles/ROKC.dir/src/Simulator.cpp.o: CMakeFiles/ROKC.dir/flags.make
 CMakeFiles/ROKC.dir/src/Simulator.cpp.o: ../src/Simulator.cpp
 CMakeFiles/ROKC.dir/src/Simulator.cpp.o: CMakeFiles/ROKC.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/devin/Desktop/ROKC/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/ROKC.dir/src/Simulator.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/devin/Desktop/ROKC/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/ROKC.dir/src/Simulator.cpp.o"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/ROKC.dir/src/Simulator.cpp.o -MF CMakeFiles/ROKC.dir/src/Simulator.cpp.o.d -o CMakeFiles/ROKC.dir/src/Simulator.cpp.o -c /home/devin/Desktop/ROKC/src/Simulator.cpp
 
 CMakeFiles/ROKC.dir/src/Simulator.cpp.i: cmake_force
@@ -128,7 +142,7 @@ CMakeFiles/ROKC.dir/src/Simulator.cpp.s: cmake_force
 CMakeFiles/ROKC.dir/src/Troop.cpp.o: CMakeFiles/ROKC.dir/flags.make
 CMakeFiles/ROKC.dir/src/Troop.cpp.o: ../src/Troop.cpp
 CMakeFiles/ROKC.dir/src/Troop.cpp.o: CMakeFiles/ROKC.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/devin/Desktop/ROKC/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/ROKC.dir/src/Troop.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/devin/Desktop/ROKC/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/ROKC.dir/src/Troop.cpp.o"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/ROKC.dir/src/Troop.cpp.o -MF CMakeFiles/ROKC.dir/src/Troop.cpp.o.d -o CMakeFiles/ROKC.dir/src/Troop.cpp.o -c /home/devin/Desktop/ROKC/src/Troop.cpp
 
 CMakeFiles/ROKC.dir/src/Troop.cpp.i: cmake_force
@@ -143,6 +157,7 @@ CMakeFiles/ROKC.dir/src/Troop.cpp.s: cmake_force
 ROKC_OBJECTS = \
 "CMakeFiles/ROKC.dir/src/Battle.cpp.o" \
 "CMakeFiles/ROKC.dir/src/Buffs.cpp.o" \
+"CMakeFiles/ROKC.dir/src/Commander.cpp.o" \
 "CMakeFiles/ROKC.dir/src/March.cpp.o" \
 "CMakeFiles/ROKC.dir/src/Simulator.cpp.o" \
 "CMakeFiles/ROKC.dir/src/Troop.cpp.o"
@@ -152,12 +167,14 @@ ROKC_EXTERNAL_OBJECTS =
 
 ../bin/ROKC: CMakeFiles/ROKC.dir/src/Battle.cpp.o
 ../bin/ROKC: CMakeFiles/ROKC.dir/src/Buffs.cpp.o
+../bin/ROKC: CMakeFiles/ROKC.dir/src/Commander.cpp.o
 ../bin/ROKC: CMakeFiles/ROKC.dir/src/March.cpp.o
 ../bin/ROKC: CMakeFiles/ROKC.dir/src/Simulator.cpp.o
 ../bin/ROKC: CMakeFiles/ROKC.dir/src/Troop.cpp.o
 ../bin/ROKC: CMakeFiles/ROKC.dir/build.make
+../bin/ROKC: /usr/lib/x86_64-linux-gnu/libpython3.10.so
 ../bin/ROKC: CMakeFiles/ROKC.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/devin/Desktop/ROKC/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Linking CXX executable ../bin/ROKC"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/devin/Desktop/ROKC/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Linking CXX executable ../bin/ROKC"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/ROKC.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
