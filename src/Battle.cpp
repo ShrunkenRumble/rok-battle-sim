@@ -1,11 +1,5 @@
 #include "Battle.h"
 
-double calcLoss(double atk, double def) {
-    double base_loss = atk / def;
-    double adj_loss = base_loss * sqrt(10000);
-    return ceil(adj_loss);
-}
-
 Battle::Battle(March *march_1, March *march_2) {
     this->march_1 = march_1;
     this->march_2 = march_2;
@@ -25,14 +19,36 @@ void Battle::run() {
         this->march_2->updateRage(m2_rage);
 
         // Calculate m1 attack, m2 counter
-        m1_attack = calcLoss(this->march_1->getAttack(), this->march_2->getDefense());          // m2 losses
-        m2_counter = calcLoss(this->march_2->getCounterAttack(), this->march_1->getDefense());  // m1 losses 
-
+        m1_attack = this->march_1->getAttack() / this->march_2->getDefense();          // m2 losses
+        m2_counter = this->march_2->getCounterAttack() / this->march_1->getDefense();  // m1 losses 
         // Calculate m2 attack, m1 counter
-        m2_attack = calcLoss(this->march_2->getAttack(), this->march_1->getDefense());          // m1 losses
-        m1_counter = calcLoss(this->march_1->getCounterAttack(), this->march_2->getDefense());  // m2 losses
-        
-        
+        m2_attack = this->march_2->getAttack() / this->march_1->getDefense();          // m1 losses
+        m1_counter = this->march_1->getCounterAttack() / this->march_2->getDefense();  // m2 losses
+
+        // Apply dmg reductions (From march *buffs*, not enemy debuffs)
+        m1_attack = this->march_2->applyDmgReduction(m1_attack);
+        m2_counter = this->march_1->applyDmgReduction(m2_counter);
+        m2_attack = this->march_1->applyDmgReduction(m2_attack);
+        m1_counter = this->march_2->applyDmgReduction(m1_counter);
+
+        // Apply troop advantage bonus. 
+        if ((this->march_1->getTroopType() == 0 && this->march_1->getTroopType() == 1)        // M1 Inf M2 Cav
+            || (this->march_1->getTroopType() == 1 && this->march_1->getTroopType() == 2)     // M1 Cav M2 Arch
+            || (this->march_1->getTroopType() == 2 && this->march_1->getTroopType() == 0)) {  // M1 Arch M2 Inf
+            m1_attack *= 1.05;
+            m1_counter *= 1.05;
+            m2_attack *= 0.95;
+            m2_counter *= 0.95;
+        }
+        if ((this->march_1->getTroopType() == 0 && this->march_1->getTroopType() == 2)        // M1 Inf M2 Arch
+            || (this->march_1->getTroopType() == 1 && this->march_1->getTroopType() == 0)     // M1 Cav M2 Inf
+            || (this->march_1->getTroopType() == 2 && this->march_1->getTroopType() == 1)) {  // M1 Arch M2 Cav
+            m2_attack *= 1.05;
+            m2_counter *= 1.05;
+            m1_attack *= 0.95;
+            m1_counter *= 0.95;
+        } 
+
         // Calculate skill damage
         if (this->march_1->getRage() >= 1000) {
             m1_skill_dmg = ceil((m1_attack+m1_counter)*((get<0>(this->march_1->getSkillDmgFac()) / 400) + (get<1>(this->march_1->getSkillDmgFac()) / 400)));  // m2 losses
