@@ -1,8 +1,4 @@
-# ROKCC
-A Rise of Kingdoms combat calculator, written in C/C++, currently attempting to simulate an open-field 1 vs. 1 battle utilizing the approximated underlying game mechanics found at:  
-https://web.archive.org/web/20210815042545/https://everythingrok.com/uncovering-the-combat-formula/.
- 
- ## How To Run:
+## How To Run:
 My development environment: CMake v3.10+, GCC/G++ v9.4+, Ubuntu 20.04 LTS  
   
 Once you've cloned the repo follow these steps to compile & run the code.
