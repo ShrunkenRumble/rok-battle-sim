@@ -51,11 +51,11 @@ void Battle::run() {
 
         // Calculate skill damage
         if (this->march_1->getRage() >= 1000) {
-            m1_skill_dmg = ceil((m1_attack+m1_counter)*((get<0>(this->march_1->getSkillDmgFac()) / 400) + (get<1>(this->march_1->getSkillDmgFac()) / 400)));  // m2 losses
+            m1_skill_dmg = this->march_1->getSkillDmg() / this->march_2->getDefense();  // m2 losses
             this->march_1->updateRage(this->march_1->getRage()*-1);       
         }
         if (this->march_2->getRage() >= 1000) {
-            m2_skill_dmg = ceil((m2_attack+m2_counter)*((get<0>(this->march_2->getSkillDmgFac()) / 400) + (get<1>(this->march_2->getSkillDmgFac()) / 400)));  // m1 losses
+            m2_skill_dmg = this->march_2->getSkillDmg() / this->march_1->getDefense();  // m1 losses
             this->march_2->updateRage(this->march_2->getRage()*-1);   
         }
         
@@ -89,12 +89,12 @@ void Battle::run() {
         //                  11: m2 cumulative rage at end of turn
         turn_log.push_back(this->march_1->getTroopCnt());
         turn_log.push_back(this->march_2->getTroopCnt());
-        turn_log.push_back(m1_attack);
-        turn_log.push_back(m2_counter);
-        turn_log.push_back(m2_attack);
-        turn_log.push_back(m1_counter);
-        turn_log.push_back(m1_skill_dmg);
-        turn_log.push_back(m2_skill_dmg);
+        turn_log.push_back(ceil(m1_attack));
+        turn_log.push_back(ceil(m2_counter));
+        turn_log.push_back(ceil(m2_attack));
+        turn_log.push_back(ceil(m1_counter));
+        turn_log.push_back(ceil(m1_skill_dmg));
+        turn_log.push_back(ceil(m2_skill_dmg));
         turn_log.push_back(m1_rage);
         turn_log.push_back(m2_rage);
         turn_log.push_back(this->march_1->getRage());

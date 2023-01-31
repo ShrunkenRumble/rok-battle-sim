@@ -11,15 +11,14 @@ March::March(string name, double troop_cnt, double advantage, Troop *troop, Buff
     this->rage = 0;
 }
 
+void March::updateRage(double rage_chg) { this->rage += rage_chg; }
+void March::updateTroopCnt(double loss) { this->troop_cnt -= loss; }
+double March::applyDmgReduction(double losses) { return losses * (1 - this->buff_set->getDmgReduction()); }
+
 string March::getName() { return this->name; }
-
 double March::getTroopCnt() { return this->troop_cnt; }
-
-double March::getCounterAttack() { return this->getAttack(); }
-
 double March::getRage() { return this->rage; }
-
-TroopType March::getTroopType() { return this->troop->getType(); }
+TroopType March::getTroopType() { return this->troop->getType(); } 
 
 double March::getDefense() {
     double defense = (this->troop->getDef()
@@ -32,40 +31,43 @@ double March::getDefense() {
 double March::getAttack() {
     double attack = (this->troop->getAtk()
                     * (1 + this->buff_set->getAtkBonus())
-                    * (1 + this->buff_set->getDmgBonus()));
+                    * (1 + this->buff_set->getDmgBonus()
+                         + this->buff_set->getNormalDmgBonus()));
     double adj_atk = attack 
                       * this->troop_cnt 
                       * sqrt(10000 / this->troop_cnt)
                       * (2 + (this->troop_cnt/333333)); 
     return adj_atk;
 }  
+
+double March::getCounterAttack() { 
+    double counter_attack = (this->troop->getAtk()
+                            * (1 + this->buff_set->getAtkBonus())
+                            * (1 + this->buff_set->getDmgBonus()
+                                 + this->buff_set->getNormalDmgBonus()
+                                 + this->buff_set->getCounterDmgBonus()));
+    double adj_counter_atk = counter_attack 
+                      * this->troop_cnt 
+                      * sqrt(10000 / this->troop_cnt)
+                      * (2 + (this->troop_cnt/333333)); 
+
+    return adj_counter_atk; 
+}
+
+double March::getSkillDmg() {
+    double prim_skill_dmg_fac = (this->prim_comm->getSkillDmgFac() / 200);
+    double sec_skill_dmg_fac = (this->sec_comm->getSkillDmgFac() / 200);
+
+    double attack = (this->troop->getAtk()
+                    * (1 + this->buff_set->getAtkBonus())
+                    * (1 + this->buff_set->getDmgBonus())
+                    * this->troop_cnt 
+                    * sqrt(10000 / this->troop_cnt)
+                    * (2 + (this->troop_cnt/333333)));
+                    
+    double skill_dmg = (attack * prim_skill_dmg_fac) + (attack * sec_skill_dmg_fac);
+    return skill_dmg;
+}
  
-tuple<double, double> March::getSkillDmgFac() {
-    tuple<double, double> skill_dmg_factors = make_tuple(this->prim_comm->getSkillDmgFac(), this->sec_comm->getSkillDmgFac());
-    return skill_dmg_factors;
-}
-
-/*
-rage cap 220 (debuffs are applied after rage reduced to 220 cap)
-+86 rage for attack
-+16 rage for counter (+16 for each additional march hit with counter)
-    Unclear: Do you also get +10 rage comp if ur counter < their attack for each additional march???
-
-If m1 attack < m2 counter
-m1 +10 rage
-If m1 counter < m2 attack
-m1 +10 rage
-
-Rage grows 10% faster when troops below 30%??
-Rage gained from firing active skill??
-Rage gained from passive skills that do dmg??
-*/
-void March::updateRage(double rage_chg) { this->rage += rage_chg; }
-
-void March::updateTroopCnt(double loss) { this->troop_cnt -= loss; }
-
-double March::applyDmgReduction(double losses) {
-    return losses * (1 - this->buff_set->getDmgReduction());
-}
 
 

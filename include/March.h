@@ -23,7 +23,7 @@ class March {
         double getTroopCnt();
         double getAttack();
         double getRage();
-        tuple<double, double> getSkillDmgFac();
+        double getSkillDmg();
         double getCounterAttack();
         double getDefense();
         TroopType getTroopType();
