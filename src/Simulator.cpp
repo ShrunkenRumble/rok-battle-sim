@@ -14,7 +14,7 @@ int main(int argc, char **argv) {
     Commander empty_comm = Commander("EmptyCommSlot", 0.0);
     BuffSet buff_set_1 = BuffSet(8.5, 1, 1.5, 0, 0, 0, 0, 0);
     BuffSet buff_set_2 = BuffSet(5.5, 1, 3.5, 0, 0, 0, 0, 0);
-    DebuffSet debuff_set = DebuffSet(0, 0, 0, 0);
+    DebuffSet debuff_set = DebuffSet(0, 0, 0, 0, 0, 0, 0);
     March march_1 = March("Markswoman", 100000, 0, &troop, &buff_set_1, &debuff_set, &comm1, &empty_comm);
     March march_2 = March("Markswoman", 100000, 0, &troop, &buff_set_2, &debuff_set, &comm2, &empty_comm);
 
