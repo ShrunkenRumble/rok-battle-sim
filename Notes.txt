@@ -10,16 +10,12 @@ If m1 counter < m2 attack
 m1 +10 rage
 
 Rage grows 10% faster when troops below 30%??
+    - Seems to be untrue
 Rage gained from firing active skill??
 Rage gained from passive skills that do dmg??
 
 ------------------------------------DMG STUFF-----------------------------------------
 
-All damage bonus
-Shielding
-Healing
-
 Key questions:
 Is skill dmg affected by buffs to attack/counter attacks? Since skill dmg is (atk + counter_atk) * (skill_dmg / 400) 
     - appears skill dmg is affected by attack bonus but not counter atk nor normal atk bonuses
-Is all damage bonus the same thing as damage bonus?
