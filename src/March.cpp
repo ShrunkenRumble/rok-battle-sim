@@ -15,8 +15,8 @@ double March::getAttack() {
                          + this->buff_set->getNormalDmgBonus()));
     double adj_atk = attack 
                       * this->troop_cnt 
-                      * sqrt(10000 / this->troop_cnt)
-                      * (2 + (this->troop_cnt/333333)); 
+                      * sqrt(EQ_CONST_1 / this->troop_cnt)
+                      * (EQ_CONST_2 + (this->troop_cnt/EQ_CONST_3)); 
     return adj_atk;
 }  
 
@@ -28,8 +28,8 @@ double March::getCounterAttack() {
                                  + this->buff_set->getCounterDmgBonus()));
     double adj_counter_atk = counter_attack 
                       * this->troop_cnt 
-                      * sqrt(10000 / this->troop_cnt)
-                      * (2 + (this->troop_cnt/333333)); 
+                      * sqrt(EQ_CONST_1 / this->troop_cnt)
+                      * (EQ_CONST_2 + (this->troop_cnt/EQ_CONST_3)); 
     return adj_counter_atk; 
 }
 
@@ -41,8 +41,8 @@ double March::getSkillDmg() {
                     * (1 + this->buff_set->getAllDmgBonus()
                          + this->buff_set->getSkillDmgBonus())
                     * this->troop_cnt 
-                    * sqrt(10000 / this->troop_cnt)
-                    * (2 + (this->troop_cnt/333333)));
+                    * sqrt(EQ_CONST_1 / this->troop_cnt)
+                    * (EQ_CONST_2 + (this->troop_cnt/EQ_CONST_3)));
                     
     double skill_dmg = attack * skill_dmg_factor;
     return skill_dmg;

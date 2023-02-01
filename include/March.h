@@ -11,6 +11,11 @@
 #include "Commander.h"
 #include "TroopType.h"
 
+// Constants found in combat equation
+#define EQ_CONST_1 10000
+#define EQ_CONST_2 2
+#define EQ_CONST_3 333333
+
 using namespace std;
 
 class March {
