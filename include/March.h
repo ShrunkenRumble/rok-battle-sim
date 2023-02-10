@@ -23,7 +23,7 @@ class March {
         March() {};
         ~March() {};
         March(string name, double troop_cnt, double advantage, Troop *troop, BuffSet *buff_set, 
-              DebuffSet *debuff_set, Commander *prim_comm, Commander *sec_comm) {
+              Commander *prim_comm, Commander *sec_comm) {
             this->name = name; 
             this->troop = troop;
             this->buff_set = buff_set; 
@@ -41,7 +41,10 @@ class March {
 
         void addRage(double rage_chg) {this->rage += rage_chg;};
         void applyLoss(double loss) {this->troop_cnt -= loss;};
-        double applyDmgReduction(double losses) {return losses * (1 - this->buff_set->getDmgReduction());};
+
+        double applyAtkDmgReduction(double losses);
+        double applyCntDmgReduction(double losses);
+        double applySkillDmgReduction(double losses);
 
         double getAttack();
         double getSkillDmg();
