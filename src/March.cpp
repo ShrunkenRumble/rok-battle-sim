@@ -1,5 +1,21 @@
 #include "March.h"
 
+double March::applyAtkDmgReduction(double losses) {
+    return losses * (1 - (this->buff_set->getDmgReduction()
+                          + this->buff_set->getNormalReduction()));
+}
+
+double March::applyCntDmgReduction(double losses) {
+    return losses * (1 - (this->buff_set->getDmgReduction()
+                          + this->buff_set->getNormalReduction()
+                          + this->buff_set->getCounterReduction()));
+}
+
+double March::applySkillDmgReduction(double losses) {
+    return losses * (1 - (this->buff_set->getDmgReduction()
+                          + this->buff_set->getSkillReduction()));
+}
+
 double March::getDefense() {
     double defense = (this->troop->getDef()
                      * this->troop->getHp()

@@ -15,9 +15,6 @@ Rage gained from firing active skill??
 Rage gained from passive skills that do dmg??
 
 ------------------------------------DMG STUFF-----------------------------------------
+Is shielding treated like skill damage but for defenese/hp instead?
 
-Key questions:
-Is skill dmg affected by buffs to attack/counter attacks? Since skill dmg is (atk + counter_atk) * (skill_dmg / 400) 
-    - appears skill dmg is affected by attack bonus but not counter atk nor normal atk bonuses
-
-How is shielding treated like skill damage but for defenese/hp instead?
+Do normal, counter, and skill dmg reductions work like all-dmg reductions or do they subtract like attack, defense, and health debuffs??

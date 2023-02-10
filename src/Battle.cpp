@@ -28,12 +28,12 @@ void Battle::run() {
         }
 
         // Apply dmg reductions (From march *buffs*, not enemy debuffs)
-        turn_log["m1 attack"] = this->march_2->applyDmgReduction(turn_log["m1 attack"]);
-        turn_log["m2 counter"] = this->march_2->applyDmgReduction(turn_log["m2 counter"]);
-        turn_log["m2 attack"] = this->march_2->applyDmgReduction(turn_log["m2 attack"]);
-        turn_log["m1 counter"] = this->march_2->applyDmgReduction(turn_log["m1 counter"]);
-        turn_log["m1 skill dmg"] = this->march_2->applyDmgReduction(turn_log["m1 skill dmg"]);
-        turn_log["m2 skill dmg"] = this->march_2->applyDmgReduction(turn_log["m2 skill dmg"]);
+        turn_log["m1 attack"] = this->march_2->applyAtkDmgReduction(turn_log["m1 attack"]);
+        turn_log["m2 attack"] = this->march_2->applyAtkDmgReduction(turn_log["m2 attack"]);
+        turn_log["m2 counter"] = this->march_2->applyCntDmgReduction(turn_log["m2 counter"]);
+        turn_log["m1 counter"] = this->march_2->applyCntDmgReduction(turn_log["m1 counter"]);
+        turn_log["m1 skill dmg"] = this->march_2->applySkillDmgReduction(turn_log["m1 skill dmg"]);
+        turn_log["m2 skill dmg"] = this->march_2->applySkillDmgReduction(turn_log["m2 skill dmg"]);
 
         // Apply troop advantage bonus
         if (this->march_1->getTroopType() != this->march_2->getTroopType()) {                     // Check if same type
