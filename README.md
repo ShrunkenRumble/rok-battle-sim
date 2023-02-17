@@ -1,5 +1,5 @@
 ## How To Run:
-My development environment: CMake v3.10+, GCC/G++ v9.4+, Ubuntu 20.04 LTS  
+My development environment: CMake v3.10+, GCC/G++ v9.4+, Ubuntu 22.04 LTS  
   
 Once you've cloned the repo follow these steps to compile & run the code.
   1. `mkdir build` (If "build" folder already exists, remove it.)   
