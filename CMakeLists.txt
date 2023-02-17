@@ -12,6 +12,7 @@ set(BIN_DIR bin)
 set(LIB_DIR lib)
 
 include_directories(${INC_DIR} ${LIB_DIR}/matplotlib-cpp)
+
 add_subdirectory(${LIB_DIR}/matplotlib-cpp)
 
 file(GLOB SRC "${SRC_DIR}/*.cpp")

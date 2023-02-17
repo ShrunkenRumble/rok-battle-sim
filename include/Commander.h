@@ -4,7 +4,8 @@
 #include <math.h>
 #include <string.h>
 #include <string>
-#include "DebuffSet.h"
+#include "Debuffs.h"
+#include "Buffs.h"
 
 using namespace std;
 
@@ -12,20 +13,22 @@ class Commander {
     public:
         Commander() {};
         ~Commander() {};
-        Commander(string name, double skillDmgFactor, DebuffSet debuff_set) {
+        Commander(string name, double skillDmgFactor, Buffs buffs, Debuffs debuffs) {
             this->name = name;
             this->skill_dmg_factor = skill_dmg_factor;
-            this->debuff_set = debuff_set;
+            this->debuffs = debuffs;
+            this->buffs = buffs;
         };
 
         string getName() {return this->name;};
         double getSkillDmgFac() {return this->skill_dmg_factor;};
-        DebuffSet getDebuffSet() {return this->debuff_set;};
+        Debuffs getDebuffs() {return this->debuffs;};
         
     private:
         string name;
         double skill_dmg_factor;
-        DebuffSet debuff_set;
+        Debuffs debuffs;
+        Buffs buffs;
 };
 
 #endif 

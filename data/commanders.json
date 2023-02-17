@@ -1,0 +1,11 @@
+{
+    "city_keeper": [
+        {
+            "name": "City Keeper",
+            "active": "15% defense for 5 turns",
+            "passive 1": "5% health",
+            "passive 2": "1% attack",
+            "passive 3": "1% defense"
+        }
+    ]
+}

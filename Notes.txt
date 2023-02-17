@@ -14,7 +14,13 @@ Rage grows 10% faster when troops below 30%??
 Rage gained from firing active skill??
 Rage gained from passive skills that do dmg??
 
-------------------------------------DMG STUFF-----------------------------------------
+------------------------------------UNKOWN-----------------------------------------
 Is shielding treated like skill damage but for defenese/hp instead?
 
-Do normal, counter, and skill dmg reductions work like all-dmg reductions or do they subtract like attack, defense, and health debuffs??
+What is the healing formula?
+
+Do normal, counter, and skill dmg reductions work 
+    like all-dmg reductions or do they subtract like attack, defense, and health debuffs??
+
+How to implement rage reductions?
+
