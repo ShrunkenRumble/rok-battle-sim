@@ -35,6 +35,7 @@ class March {
         
         string getName() {return this->name;};
         double getRage() {return this->rage;};
+        double getSpeed() {return this->speed;};
         double getTroopCnt() {return this->troop_cnt;};
         TroopType getTroopType() {return this->troop->getType();};
 
@@ -53,6 +54,7 @@ class March {
     private:
         double troop_cnt;
         double rage;
+        double speed;
         string name;
         Troop *troop;
         Buffs *buffs;

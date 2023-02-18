@@ -29,13 +29,13 @@ int main(int argc, char **argv) {
     //battle.printLog();
     //battle.exportLog();
 
-    ifstream file("data/test.json");
-    Json::Value actualJson;
+    ifstream file("data/commanders.json");
+    Json::Value commanders;
     Json::Reader reader;
 
-    reader.parse(file, actualJson);
-    cout << "Total json data:\n" << actualJson << endl;
+    reader.parse(file, commanders);
+    cout << "Total commanders data:\n" << commanders << endl;
 
-    cout << "Name: " << actualJson["name"] << endl;
+    cout << commanders["city_keeper"]["passive_1"]["a"]["lvl_val"][0] << endl;
     return 0;
 }
