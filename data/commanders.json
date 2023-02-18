@@ -1,5 +1,5 @@
 {
-    "city_keeper": [
+    "Commander": [
         {
             "name": "City Keeper",
             "active": "15% defense for 5 turns",
@@ -9,3 +9,4 @@
         }
     ]
 }
+

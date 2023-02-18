@@ -10,7 +10,6 @@
 #include <vector>
 #include <math.h>
 #include <map>
-#include "matplotlibcpp.h"
 
 #include "March.h"
 

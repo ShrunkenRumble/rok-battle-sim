@@ -5,6 +5,10 @@
 #include "Commander.h"
 #include "TroopType.h"
 
+#include <fstream>
+#include "value.h"
+#include "json.h"
+
 using namespace std;
 
 int main(int argc, char **argv) {
@@ -24,5 +28,14 @@ int main(int argc, char **argv) {
 
     //battle.printLog();
     //battle.exportLog();
+
+    ifstream file("data/test.json");
+    Json::Value actualJson;
+    Json::Reader reader;
+
+    reader.parse(file, actualJson);
+    cout << "Total json data:\n" << actualJson << endl;
+
+    cout << "Name: " << actualJson["name"] << endl;
     return 0;
 }
