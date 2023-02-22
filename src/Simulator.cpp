@@ -5,10 +5,6 @@
 #include "Commander.h"
 #include "TroopType.h"
 
-#include <fstream>
-#include "value.h"
-#include "json.h"
-
 using namespace std;
 
 int main(int argc, char **argv) {
@@ -29,13 +25,5 @@ int main(int argc, char **argv) {
     //battle.printLog();
     //battle.exportLog();
 
-    ifstream file("data/commanders.json");
-    Json::Value commanders;
-    Json::Reader reader;
-
-    reader.parse(file, commanders);
-    cout << "Total commanders data:\n" << commanders << endl;
-
-    cout << commanders["city_keeper"]["passive_1"]["a"]["lvl_val"][0] << endl;
     return 0;
 }

@@ -3,37 +3,38 @@
         {
             "name" : "City Keeper",
             "active" : {"row_cnt" : 1,
+                        "rage_req" : 1000,
                         "a" : { 
-                                "skl_type" : "def_bonus", 
+                                "bns_type" : "def_bonus", 
                                 "trp_type" : "na",
-                                "turns" : 5,
+                                "turn_dur" : 5,
                                 "turn_int" : 0,
                                 "lvl_val" : [0.03, 0.06, 0.09, 0.12, 0.15]
                               }
                        },
             "passive_1" : {"row_cnt" : 1, 
                             "a" : { 
-                                    "skl_type" : "hp_bonus", 
+                                    "bns_type" : "hp_bonus", 
                                     "trp_type" : "Infantry",
-                                    "turns" : 0,
+                                    "turn_dur" : 0,
                                     "turn_int" : 0,
                                     "lvl_val" : [0.01, 0.02, 0.03, 0.04, 0.05]
                                   }
                           },
             "passive_2" : {"row_cnt" : 1, 
                             "a" : {
-                                    "skl_type" : "atk_bonus", 
+                                    "bns_type" : "atk_bonus", 
                                     "trp_type" : "Infantry",
-                                    "turns" : 0,
+                                    "turn_dur" : 0,
                                     "turn_int" : 0,
                                     "lvl_val" : [0.01, 0.02, 0.03, 0.04, 0.05]
                                   }
                           },
             "passive_3" : {"row_cnt" : 1, 
                             "a" : {
-                                    "skl_type" : "def_bonus", 
+                                    "bns_type" : "def_bonus", 
                                     "trp_type" : "Infantry",
-                                    "turns" : 0,
+                                    "turn_dur" : 0,
                                     "turn_int" : 0,
                                     "lvl_val" : [0.01, 0.02, 0.03, 0.04, 0.05]
                                   }
@@ -44,44 +45,45 @@
         {
             "name" : "Dragon Lancer",
             "active" : {"row_cnt" : 2,
+                        "rage_req" : 1000,
                         "a" : { 
-                                "skl_type" : "sdf", 
+                                "bns_type" : "sdf", 
                                 "trp_type" : "na",
-                                "turns" : 0,
+                                "turn_dur" : 0,
                                 "turn_int" : 0,
                                 "lvl_val" : [30, 40, 50, 60, 75]
                               },
                         "b" : { 
-                                "skl_type" : "adf", 
+                                "bns_type" : "adf", 
                                 "trp_type" : "na",
-                                "turns" : 2,
+                                "turn_dur" : 2,
                                 "turn_int" : 0,
                                 "lvl_val" : [30, 40, 50, 60, 75]
                               }
                        },
             "passive_1" : {"row_cnt" : 1, 
                             "a" : { 
-                                    "skl_type" : "spd_bonus", 
+                                    "bns_type" : "spd_bonus", 
                                     "trp_type" : "Cavalry",
-                                    "turns" : 0,
+                                    "turn_dur" : 0,
                                     "turn_int" : 0,
                                     "lvl_val" : [0.02, 0.04, 0.06, 0.08, 0.010]
                                   }
                           },
             "passive_2" : {"row_cnt" : 1, 
                             "a" : {
-                                    "skl_type" : "atk_bonus", 
+                                    "bns_type" : "atk_bonus", 
                                     "trp_type" : "Cavalry",
-                                    "turns" : 0,
+                                    "turn_dur" : 0,
                                     "turn_int" : 0,
                                     "lvl_val" : [0.01, 0.02, 0.03, 0.04, 0.05]
                                   }
                           },
             "passive_3" : {"row_cnt" : 1, 
                             "a" : {
-                                    "skl_type" : "def_bonus", 
+                                    "bns_type" : "def_bonus", 
                                     "trp_type" : "Cavalry",
-                                    "turns" : 0,
+                                    "turn_dur" : 0,
                                     "turn_int" : 0,
                                     "lvl_val" : [0.01, 0.02, 0.03, 0.04, 0.05]
                                   }

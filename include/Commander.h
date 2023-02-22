@@ -4,8 +4,12 @@
 #include <math.h>
 #include <string.h>
 #include <string>
+#include <fstream>
+#include "value.h"
+#include "json.h"
 #include "Debuffs.h"
 #include "Buffs.h"
+#include "Skill.h"
 
 using namespace std;
 
@@ -13,22 +17,17 @@ class Commander {
     public:
         Commander() {};
         ~Commander() {};
-        Commander(string name, double skillDmgFactor, Buffs buffs, Debuffs debuffs) {
-            this->name = name;
-            this->skill_dmg_factor = skill_dmg_factor;
-            this->debuffs = debuffs;
-            this->buffs = buffs;
-        };
 
         string getName() {return this->name;};
-        double getSkillDmgFac() {return this->skill_dmg_factor;};
-        Debuffs getDebuffs() {return this->debuffs;};
-        
+        double getRageReq() {return this->rage_req;};
+
+        void loadCmdrData(string name);
+
     private:
         string name;
-        double skill_dmg_factor;
-        Debuffs debuffs;
-        Buffs buffs;
+        double rage_req;
+        vector<vector<Skill>> skills;
+        
 };
 
 #endif 
