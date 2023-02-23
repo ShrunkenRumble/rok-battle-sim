@@ -4,6 +4,7 @@
 #include "Battle.h"
 #include "Commander.h"
 #include "TroopType.h"
+#include <string>
 
 using namespace std;
 
@@ -24,6 +25,5 @@ int main(int argc, char **argv) {
 
     //battle.printLog();
     //battle.exportLog();
-
     return 0;
 }

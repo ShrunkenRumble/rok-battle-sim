@@ -50,7 +50,7 @@ double March::getCounterAttack() {
 }
 
 double March::getSkillDmg() {
-    double skill_dmg_factor = (this->prim_comm->getSkillDmgFac() + this->sec_comm->getSkillDmgFac()) / 200;
+    double skill_dmg_factor = (this->prim_comm->getDirectDmgFac() + this->sec_comm->getDirectDmgFac()) / 200;
 
     double attack = (this->troop->getAtk()
                     * (1 + this->buffs->getAtkBonus())

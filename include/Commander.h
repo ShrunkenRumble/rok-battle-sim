@@ -5,28 +5,34 @@
 #include <string.h>
 #include <string>
 #include <fstream>
-#include "value.h"
-#include "json.h"
+#include <nlohmann/json.hpp>
+#include "SkillComponent.h"
 #include "Debuffs.h"
 #include "Buffs.h"
-#include "Skill.h"
 
-using namespace std;
+using json = nlohmann::json;
 
 class Commander {
     public:
         Commander() {};
         ~Commander() {};
 
+        void loadCmdrData(string name, int skill_lvls[4]);
+
         string getName() {return this->name;};
         double getRageReq() {return this->rage_req;};
-
-        void loadCmdrData(string name);
+        double getDirectDmgFac();
+        Buffs getBuffs();
+        Debuffs getDebuffs();
 
     private:
         string name;
         double rage_req;
-        vector<vector<Skill>> skills;
+        vector<SkillComponent> active_skill;
+        vector<SkillComponent> p1_skill;
+        vector<SkillComponent> p2_skill;
+        vector<SkillComponent> p3_skill;
+        vector<SkillComponent> expertise_skill;
         
 };
 
