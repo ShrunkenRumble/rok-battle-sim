@@ -47,7 +47,7 @@ class March {
         double applySkillDmgReduction(double losses);
 
         double getAttack();
-        double getSkillDmg();
+        double getDirectDmg();
         double getCounterAttack();
         double getDefense();
     

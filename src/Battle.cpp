@@ -42,11 +42,11 @@ void Battle::run() {
 
         // Calculate skill damage
         if (this->march_1->getRage() >= 1000) {
-            turn_log["m1 skill dmg"] = this->march_1->getSkillDmg() / this->march_2->getDefense();  // m2 losses
+            turn_log["m1 skill dmg"] = this->march_1->getDirectDmg() / this->march_2->getDefense();  // m2 losses
             this->march_1->addRage(this->march_1->getRage()*-1);                                    // reset m1's rage       
         }
         if (this->march_2->getRage() >= 1000) {
-            turn_log["m2 skill dmg"] = this->march_2->getSkillDmg() / this->march_1->getDefense();  // m1 losses
+            turn_log["m2 skill dmg"] = this->march_2->getDirectDmg() / this->march_1->getDefense();  // m1 losses
             this->march_2->addRage(this->march_2->getRage()*-1);                                    // reset m2's rage
         }
 

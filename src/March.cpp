@@ -49,8 +49,8 @@ double March::getCounterAttack() {
     return adj_counter_atk; 
 }
 
-double March::getSkillDmg() {
-    double skill_dmg_factor = (this->prim_comm->getDirectDmgFac() + this->sec_comm->getDirectDmgFac()) / 200;
+double March::getDirectDmg() {
+    double direct_dmg_fac = (this->prim_comm->getDirectDmgFac() + this->sec_comm->getDirectDmgFac()) / 200;
 
     double attack = (this->troop->getAtk()
                     * (1 + this->buffs->getAtkBonus())
@@ -60,8 +60,8 @@ double March::getSkillDmg() {
                     * sqrt(EQ_CONST_1 / this->troop_cnt)
                     * (EQ_CONST_2 + (this->troop_cnt/EQ_CONST_3)));
                     
-    double skill_dmg = attack * skill_dmg_factor;
-    return skill_dmg;
+    double direct_dmg = attack * direct_dmg_fac;
+    return direct_dmg;
 }
  
 

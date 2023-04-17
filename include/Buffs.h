@@ -1,15 +1,17 @@
 #ifndef BUFFS_H_
 #define BUFFS_H_
 
+#include <map>
+#include <string>
+
 using namespace std;
 
 class Buffs {
     public:
-        Buffs() {};
         ~Buffs() {};
-        Buffs(double atk_bonus, double def_bonus, double hp_bonus,
-              double counter_dmg_bonus, double normal_dmg_bonus, double skill_dmg_bonus, double all_dmg_bonus, 
-              double dmg_reduction, double counter_dmg_reduction, double normal_dmg_reduction, double skill_dmg_reduction) {
+        Buffs(double atk_bonus = 0, double def_bonus = 0, double hp_bonus = 0,
+              double counter_dmg_bonus = 0, double normal_dmg_bonus = 0, double skill_dmg_bonus = 0, double all_dmg_bonus = 0, 
+              double dmg_reduction = 0, double counter_dmg_reduction = 0, double normal_dmg_reduction = 0, double skill_dmg_reduction = 0) {
             this->atk_bonus = atk_bonus;
             this->def_bonus = def_bonus;
             this->hp_bonus = hp_bonus;
@@ -22,32 +24,45 @@ class Buffs {
             this->normal_dmg_reduction = normal_dmg_reduction;
             this->skill_dmg_reduction = skill_dmg_reduction;
         };
+        Buffs(map<string, double> buffs) {
+            this->atk_bonus = buffs["atk_bonus"];
+            this->def_bonus = buffs["def_bonus"];
+            this->hp_bonus = buffs["hp_bonus"];
+            this->counter_dmg_bonus = buffs["counter_dmg_bonus"];
+            this->normal_dmg_bonus = buffs["normal_dmg_bonus"];
+            this->skill_dmg_bonus = buffs["skill_dmg_bonus"];
+            this->all_dmg_bonus = buffs["all_dmg_bonus"];
+            this->dmg_reduction = buffs["dmg_reduction"];
+            this->counter_dmg_reduction = buffs["counter_dmg_reduction"];
+            this->normal_dmg_reduction = buffs["normal_dmg_reduction"];
+            this->skill_dmg_reduction = buffs["skill_dmg_reduction"];
+        };
 
         Buffs operator + (Buffs const &other) {
             return Buffs(this->atk_bonus + other.atk_bonus,
-                         this->def_bonus + other.def_bonus,
-                         this->hp_bonus + other.hp_bonus,
-                         this->counter_dmg_bonus + other.counter_dmg_bonus,
-                         this->normal_dmg_bonus + other.normal_dmg_bonus,
-                         this->skill_dmg_bonus + other.skill_dmg_bonus,
-                         this->all_dmg_bonus + other.all_dmg_bonus,
-                         this->dmg_reduction + other.dmg_reduction,
-                         this->counter_dmg_reduction + other.counter_dmg_reduction,
-                         this->normal_dmg_reduction + other.normal_dmg_reduction,
-                         this->skill_dmg_reduction + other.skill_dmg_reduction);
+                this->def_bonus + other.def_bonus,
+                this->hp_bonus + other.hp_bonus,
+                this->counter_dmg_bonus + other.counter_dmg_bonus,
+                this->normal_dmg_bonus + other.normal_dmg_bonus,
+                this->skill_dmg_bonus + other.skill_dmg_bonus,
+                this->all_dmg_bonus + other.all_dmg_bonus,
+                this->dmg_reduction + other.dmg_reduction,
+                this->counter_dmg_reduction + other.counter_dmg_reduction,
+                this->normal_dmg_reduction + other.normal_dmg_reduction,
+                this->skill_dmg_reduction + other.skill_dmg_reduction);
         };
         Buffs operator - (Buffs const &other) {
-            return Buffs(this->atk_bonus + other.atk_bonus,
-                         this->def_bonus + other.def_bonus,
-                         this->hp_bonus + other.hp_bonus,
-                         this->counter_dmg_bonus + other.counter_dmg_bonus,
-                         this->normal_dmg_bonus + other.normal_dmg_bonus,
-                         this->skill_dmg_bonus + other.skill_dmg_bonus,
-                         this->all_dmg_bonus + other.all_dmg_bonus,
-                         this->dmg_reduction + other.dmg_reduction,
-                         this->counter_dmg_reduction + other.counter_dmg_reduction,
-                         this->normal_dmg_reduction + other.normal_dmg_reduction,
-                         this->skill_dmg_reduction + other.skill_dmg_reduction);
+            return Buffs(this->atk_bonus - other.atk_bonus,
+                this->def_bonus - other.def_bonus,
+                this->hp_bonus - other.hp_bonus,
+                this->counter_dmg_bonus - other.counter_dmg_bonus,
+                this->normal_dmg_bonus - other.normal_dmg_bonus,
+                this->skill_dmg_bonus - other.skill_dmg_bonus,
+                this->all_dmg_bonus - other.all_dmg_bonus,
+                this->dmg_reduction - other.dmg_reduction,
+                this->counter_dmg_reduction - other.counter_dmg_reduction,
+                this->normal_dmg_reduction - other.normal_dmg_reduction,
+                this->skill_dmg_reduction - other.skill_dmg_reduction);
         };
 
         double getAtkBonus() {return this->atk_bonus;};
