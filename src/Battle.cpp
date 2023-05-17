@@ -1,11 +1,34 @@
 #include "Battle.h"
 
+void applyTroopAdvantage(March march_1, March march_2, map<string, double> *turn_log) {
+    if (march_1.getTroopType() != march_2.getTroopType()) {                     // Check if same type
+        if ((march_1.getTroopType() == 0 && march_1.getTroopType() == 1)        // If not then check if M1 has advantage
+            || (march_1.getTroopType() == 1 && march_1.getTroopType() == 2)     
+            || (march_1.getTroopType() == 2 && march_1.getTroopType() == 0)) {  
+            (*turn_log)["m1 attack"] *= 1.05;
+            (*turn_log)["m1 counter"] *= 1.05;
+            (*turn_log)["m1 skill dmg"] *= 1.05;
+            (*turn_log)["m2 attack"] *= 0.95;
+            (*turn_log)["m2 counter"] *= 0.95;
+            (*turn_log)["m2 skill dmg"] *= 0.95;
+        } else {                                                                // If M1 doesn't then M2 does
+            (*turn_log)["m2 attack"] *= 1.05;
+            (*turn_log)["m2 counter"] *= 1.05;
+            (*turn_log)["m2 skill dmg"] *= 1.05;
+            (*turn_log)["m1 attack"] *= 0.95;
+            (*turn_log)["m1 counter"] *= 0.95;
+            (*turn_log)["m1 skill dmg"] *= 0.95;
+        }
+    }
+}
+
 void Battle::run() {
     while (this->march_1->getTroopCnt() > 0 && this->march_2->getTroopCnt() > 0) {
         map<string, double> turn_log {{"m1 attack", 0}, {"m1 counter", 0}, {"m1 skill dmg", 0},
                                       {"m2 attack", 0}, {"m2 counter", 0}, {"m2 skill dmg", 0},
                                       {"m1 rage", 0}, {"m2 rage", 0}, 
                                       {"m1 troop cnt", 0}, {"m2 troop cnt", 0}};
+        bool m1_skill_fired = false, m2_skill_fired = false;
 
         // Add base rage generated from this turn
         this->march_1->addRage(102);
@@ -19,12 +42,12 @@ void Battle::run() {
 
         // Calculate skill damage
         if (this->march_1->getRage() >= 1000) {
-            turn_log["m1 skill dmg"] = this->march_1->getSkillDmg() / this->march_2->getDefense();  // m2 losses
-            this->march_1->addRage(this->march_1->getRage()*-1);       
+            turn_log["m1 skill dmg"] = this->march_1->getDirectDmg() / this->march_2->getDefense();  // m2 losses
+            this->march_1->addRage(this->march_1->getRage()*-1);                                    // reset m1's rage       
         }
         if (this->march_2->getRage() >= 1000) {
-            turn_log["m2 skill dmg"] = this->march_2->getSkillDmg() / this->march_1->getDefense();  // m1 losses
-            this->march_2->addRage(this->march_2->getRage()*-1);   
+            turn_log["m2 skill dmg"] = this->march_2->getDirectDmg() / this->march_1->getDefense();  // m1 losses
+            this->march_2->addRage(this->march_2->getRage()*-1);                                    // reset m2's rage
         }
 
         // Apply dmg reductions (From march *buffs*, not enemy debuffs)
@@ -36,31 +59,16 @@ void Battle::run() {
         turn_log["m2 skill dmg"] = this->march_2->applySkillDmgReduction(turn_log["m2 skill dmg"]);
 
         // Apply troop advantage bonus
-        if (this->march_1->getTroopType() != this->march_2->getTroopType()) {                     // Check if same type
-            if ((this->march_1->getTroopType() == 0 && this->march_1->getTroopType() == 1)        // If not then check if M1 has advantage
-                || (this->march_1->getTroopType() == 1 && this->march_1->getTroopType() == 2)     
-                || (this->march_1->getTroopType() == 2 && this->march_1->getTroopType() == 0)) {  
-                turn_log["m1 attack"] *= 1.05;
-                turn_log["m1 counter"] *= 1.05;
-                turn_log["m1 skill dmg"] *= 1.05;
-                turn_log["m2 attack"] *= 0.95;
-                turn_log["m2 counter"] *= 0.95;
-                turn_log["m2 skill dmg"] *= 0.95;
-            } else {                                                                              // If M1 doesn't then M2 does
-                turn_log["m2 attack"] *= 1.05;
-                turn_log["m2 counter"] *= 1.05;
-                turn_log["m2 skill dmg"] *= 1.05;
-                turn_log["m1 attack"] *= 0.95;
-                turn_log["m1 counter"] *= 0.95;
-                turn_log["m1 skill dmg"] *= 0.95;
-            }
-        }
+        applyTroopAdvantage(*(this->march_1), *(this->march_2), &turn_log);
 
         // Apply rage compensation
         if (turn_log["m1 attack"]  < turn_log["m2 counter"] ) { this->march_1->addRage(10); }
         else { this->march_2->addRage(10); } 
         if (turn_log["m2 attack"]  < turn_log["m1 counter"] ) { this->march_2->addRage(10); }
         else { this->march_1->addRage(10); }
+
+        // Apply temporary buffs/debuffs for next turn
+        
 
         // Apply ceiling function to every value
         for (auto e : turn_log) {turn_log[e.first] = ceil(turn_log[e.first]);}

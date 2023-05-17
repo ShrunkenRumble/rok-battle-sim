@@ -6,8 +6,8 @@
 #include <string>
 #include <tuple>
 #include "Troop.h"
-#include "BuffSet.h"
-#include "DebuffSet.h"
+#include "Buffs.h"
+#include "Debuffs.h"
 #include "Commander.h"
 #include "TroopType.h"
 
@@ -22,20 +22,20 @@ class March {
     public:
         March() {};
         ~March() {};
-        March(string name, double troop_cnt, double advantage, Troop *troop, BuffSet *buff_set, 
+        March(string name, double troop_cnt, Troop *troop, Buffs *buffs, 
               Commander *prim_comm, Commander *sec_comm) {
             this->name = name; 
             this->troop = troop;
-            this->buff_set = buff_set; 
             this->troop_cnt = troop_cnt; 
-            this->advantage = advantage; 
             this->prim_comm = prim_comm; 
             this->sec_comm = sec_comm; 
+            this->buffs = buffs; 
             this->rage = 0;
         };
         
         string getName() {return this->name;};
         double getRage() {return this->rage;};
+        double getSpeed() {return this->speed;};
         double getTroopCnt() {return this->troop_cnt;};
         TroopType getTroopType() {return this->troop->getType();};
 
@@ -47,17 +47,17 @@ class March {
         double applySkillDmgReduction(double losses);
 
         double getAttack();
-        double getSkillDmg();
+        double getDirectDmg();
         double getCounterAttack();
         double getDefense();
     
     private:
         double troop_cnt;
-        double advantage;
         double rage;
+        double speed;
         string name;
         Troop *troop;
-        BuffSet *buff_set;
+        Buffs *buffs;
         Commander *prim_comm;
         Commander *sec_comm;
 };

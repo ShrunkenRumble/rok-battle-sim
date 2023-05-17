@@ -1,9 +1,10 @@
 #include "Troop.h"
-#include "BuffSet.h"
+#include "Buffs.h"
 #include "March.h"
 #include "Battle.h"
 #include "Commander.h"
 #include "TroopType.h"
+#include <string>
 
 using namespace std;
 

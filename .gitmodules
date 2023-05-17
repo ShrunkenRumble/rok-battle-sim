@@ -1,0 +1,6 @@
+[submodule "lib/matplotlib-cpp"]
+	path = lib/matplotlib-cpp
+	url = https://github.com/lava/matplotlib-cpp.git
+[submodule "lib/json"]
+	path = lib/json
+	url = https://github.com/nlohmann/json.git

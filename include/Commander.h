@@ -4,28 +4,35 @@
 #include <math.h>
 #include <string.h>
 #include <string>
-#include "DebuffSet.h"
+#include <fstream>
+#include <nlohmann/json.hpp>
+#include "SkillComponent.h"
+#include "Debuffs.h"
+#include "Buffs.h"
 
-using namespace std;
+using json = nlohmann::json;
 
 class Commander {
     public:
-        Commander() {};
+        Commander(string name, int skill_lvls[4]);
         ~Commander() {};
-        Commander(string name, double skillDmgFactor, DebuffSet debuff_set) {
-            this->name = name;
-            this->skill_dmg_factor = skill_dmg_factor;
-            this->debuff_set = debuff_set;
-        };
 
         string getName() {return this->name;};
-        double getSkillDmgFac() {return this->skill_dmg_factor;};
-        DebuffSet getDebuffSet() {return this->debuff_set;};
-        
+        double getRageReq() {return this->rage_req;};
+        double getDirectDmgFac();
+        Buffs getBuffs() {return this->buffs;};
+        Debuffs getDebuffs() {return this->debuffs;};
+
     private:
         string name;
-        double skill_dmg_factor;
-        DebuffSet debuff_set;
+        double rage_req;
+        vector<SkillComponent> active_skill;
+        vector<SkillComponent> p1_skill;
+        vector<SkillComponent> p2_skill;
+        vector<SkillComponent> p3_skill;
+        vector<SkillComponent> expertise_skill;
+        Buffs buffs;
+        Debuffs debuffs;
 };
 
 #endif 
