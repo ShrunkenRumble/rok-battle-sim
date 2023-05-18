@@ -1,53 +1,32 @@
 package shrunken.rokcc.sim;
 
-import java.util.ArrayList;
-import org.json.simple.JSONArray;
-import org.json.simple.JSONObject;
-import org.json.simple.parser.JSONParser;
-import org.json.simple.parser.ParseException;
-import java.io.FileReader;
+import java.io.File;
 import java.io.IOException;
-import java.io.Reader;
-import java.util.Iterator;
+import java.util.List;
+
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 public class Commander {
-    private String name;
-    private double rageRequirement;
-    private ArrayList<ArrayList<SkillComponent>> skills;
+    private int rageRequirement;
+    private List<SkillComponent> active;
+    private List<SkillComponent> passive1;
+    private List<SkillComponent> passive2;
+    private List<SkillComponent> passive3;
+    private List<SkillComponent> expertise;
+
     private Buffs buffs;
+    private String name;
     private int[] skillLevels;
 
-    public Commander(String name, int[] skillLevels) {
-        this.name = name;
-        this.skillLevels = skillLevels;
-
-        JSONParser parser = new JSONParser();
-        String jsonFileName = "~/rokcc/data/" + name + ".json";
-        /* 
-        try (Reader reader = new FileReader(jsonFileName)) {
-            
-            JSONObject jsonObject = (JSONObject) parser.parse(reader);
-            System.out.println(jsonObject);
-    
-            String name = (String) jsonObject.get("name");
-            System.out.println(name);
-    
-            long age = (Long) jsonObject.get("age");
-            System.out.println(age);
-    
-            // loop array
-            JSONArray msg = (JSONArray) jsonObject.get("messages");
-            Iterator<String> iterator = msg.iterator();
-            while (iterator.hasNext()) {
-                System.out.println(iterator.next());
-            }
-    
+    public static Commander loadFromJson(String name, int[] skillLevels) {
+        ObjectMapper mapper = new ObjectMapper();
+        String path = "~/rokcc/data/" + name + ".json";
+        try {
+            return mapper.readValue(new File(path), Commander.class);
         } catch (IOException e) {
             e.printStackTrace();
-        } catch (ParseException e) {
-            e.printStackTrace();
+            return null;
         }
-        */
     }
 
     public String getName() {return this.name;}
