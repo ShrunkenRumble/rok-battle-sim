@@ -1,7 +1,8 @@
 package shrunken.rokcc.sim.buff;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import shrunken.rokcc.sim.TroopType;
+
+import shrunken.rokcc.sim.troop.TroopType;
 
 public class Buff {
     private BuffType buffType;

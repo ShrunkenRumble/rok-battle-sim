@@ -1,7 +1,8 @@
 package shrunken.rokcc.sim.buff;
 
 import java.util.ArrayList;
-import shrunken.rokcc.sim.TroopType;
+
+import shrunken.rokcc.sim.troop.TroopType;
 
 public class BuffSet {
     private ArrayList<Buff> buffs;

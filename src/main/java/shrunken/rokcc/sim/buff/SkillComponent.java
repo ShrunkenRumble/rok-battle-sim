@@ -1,7 +1,8 @@
 package shrunken.rokcc.sim.buff;
 
 import java.util.List;
-import shrunken.rokcc.sim.TroopType;
+
+import shrunken.rokcc.sim.troop.TroopType;
 
 public class SkillComponent extends TemporaryBuff{
     private List<Double> values;

@@ -1,6 +1,7 @@
 package shrunken.rokcc.sim;
 
 import shrunken.rokcc.sim.buff.BuffSet;
+import shrunken.rokcc.sim.troop.Troop;
 
 public class March {
     private double troopCnt, rage, speed;

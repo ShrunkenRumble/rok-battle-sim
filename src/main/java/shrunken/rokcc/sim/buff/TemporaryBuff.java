@@ -1,6 +1,6 @@
 package shrunken.rokcc.sim.buff;
 
-import shrunken.rokcc.sim.TroopType;
+import shrunken.rokcc.sim.troop.TroopType;
 
 public class TemporaryBuff extends Buff{
     private int duration;

@@ -1,4 +1,4 @@
-package shrunken.rokcc.sim;
+package shrunken.rokcc.sim.troop;
 
 public class Troop {
     private double atk;

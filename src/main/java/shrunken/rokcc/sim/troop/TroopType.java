@@ -1,3 +1,3 @@
-package shrunken.rokcc.sim;
+package shrunken.rokcc.sim.troop;
 
 public enum TroopType {INF, CAV, ARCH, NONE};
