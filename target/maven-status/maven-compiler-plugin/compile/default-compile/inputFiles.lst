@@ -1,7 +1,10 @@
 /home/devin/Desktop/rokcc/src/main/java/shrunken/rokcc/sim/March.java
 /home/devin/Desktop/rokcc/src/main/java/shrunken/rokcc/sim/TroopType.java
+/home/devin/Desktop/rokcc/src/main/java/shrunken/rokcc/sim/buff/BuffType.java
+/home/devin/Desktop/rokcc/src/main/java/shrunken/rokcc/sim/buff/TemporaryBuff.java
 /home/devin/Desktop/rokcc/src/main/java/shrunken/rokcc/sim/Troop.java
 /home/devin/Desktop/rokcc/src/main/java/shrunken/rokcc/sim/Commander.java
-/home/devin/Desktop/rokcc/src/main/java/shrunken/rokcc/sim/Buffs.java
-/home/devin/Desktop/rokcc/src/main/java/shrunken/rokcc/sim/SkillComponent.java
+/home/devin/Desktop/rokcc/src/main/java/shrunken/rokcc/sim/buff/BuffSet.java
+/home/devin/Desktop/rokcc/src/main/java/shrunken/rokcc/sim/buff/SkillComponent.java
+/home/devin/Desktop/rokcc/src/main/java/shrunken/rokcc/sim/buff/Buff.java
 /home/devin/Desktop/rokcc/src/main/java/shrunken/rokcc/sim/App.java
