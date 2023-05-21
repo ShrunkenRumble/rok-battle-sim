@@ -1,7 +1,6 @@
 package shrunken.rokcc.sim.buff;
 
 import java.util.ArrayList;
-
 import shrunken.rokcc.sim.troop.TroopType;
 
 public class BuffSet {
@@ -48,15 +47,19 @@ public class BuffSet {
             result.setValue(value);
         }
         return result;
+    }   
+
+    public void plus(BuffSet buffSet2) {
+        for (Buff buff2 : buffSet2.getBuffs()) {
+            this.addBuff(buff2);
+        }
     }
 
-    public static BuffSet addBuffs(BuffSet buffSet1, BuffSet buffSet2) {
+    public static BuffSet add(BuffSet buffSet1, BuffSet buffSet2) {
         BuffSet sum = buffSet1.clone();
-
         for (Buff buff2 : buffSet2.getBuffs()) {
             sum.addBuff(buff2);
         }
-
         return sum;
     }
 }

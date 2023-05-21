@@ -52,9 +52,22 @@ public class Buff {
             }
         }
     }
+    public static Buff add(Buff buff1, Buff buff2) {
+        Buff result = new Buff();
+        if (!(buff2 instanceof TemporaryBuff) && !(buff2 instanceof SkillComponent)) {
+            if (!(buff1 instanceof TemporaryBuff) && !(buff1 instanceof SkillComponent)) {
+                if (buff1.equals(buff2)) {
+                    result.setBuffType(buff1.getBuffType());
+                    result.setTroopType(buff1.getTroopType());
+                    result.setValue(buff1.getValue() + buff2.getValue());
+                }
+            }
+        }
+        return result;
+    }
+
     /*
      * Is not mean't to be used on TemporaryBuffs or SkillComponents.
-     * Also note that a buff value should never be zero.
      */
     public void minus(Buff buff2) {
         if (!(buff2 instanceof TemporaryBuff) && !(buff2 instanceof SkillComponent)) {
@@ -63,11 +76,29 @@ public class Buff {
                     if (this.value - buff2.getValue() >= 0.0) {
                         this.value -= buff2.getValue();
                     } else {
+                        // A buff value should never be negative.
                         this.value = 0;
                     }
                 }
             }
         }
+    }
+    public static Buff subtract(Buff buff1, Buff buff2) {
+        Buff result = new Buff();
+        if (!(buff2 instanceof TemporaryBuff) && !(buff2 instanceof SkillComponent)) {
+            if (!(buff1 instanceof TemporaryBuff) && !(buff1 instanceof SkillComponent)) {
+                if (buff1.equals(buff2)) {
+                    result.setBuffType(buff1.getBuffType());
+                    result.setTroopType(buff1.getTroopType());
+                    if (buff1.getValue() - buff2.getValue() >= 0.0) {
+                        result.setValue(buff1.getValue() + buff2.getValue());
+                    } else {
+                        result.setValue(0);
+                    }
+                }
+            }
+        }
+        return result;
     }
 
     /*
