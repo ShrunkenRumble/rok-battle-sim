@@ -4,6 +4,7 @@ import java.lang.Math;
 import shrunken.rokcc.sim.buff.BuffSet;
 import shrunken.rokcc.sim.buff.BuffType;
 import shrunken.rokcc.sim.troop.Troop;
+import shrunken.rokcc.sim.troop.TroopType;
 
 public class March {
     private static final double EQ_CONST_1 = 10000;
@@ -53,48 +54,77 @@ public class March {
     
     
     public double applyAtkReduction(double losses) {
-        return losses;
-    }
-    public double applyCntDmgReduction(double losses) {
-        return losses;
-    }
-    public double applySkillDmgReduction(double losses) {
-        return losses;
+        return losses * (1 - (buffSet.getBuff(BuffType.ALLDMGREDUCTION, troop.getTroopType()).getValue()
+                                + buffSet.getBuff(BuffType.NORMALDMGREDUCTION, troop.getTroopType()).getValue()));
     }
 
-    public double calcAttack() {
-        double attack = (this.troop.getAtk()
-                            * (1 + this.buffSet.getBuff(BuffType.ATK, this.troop.getTroopType()).getValue())
-                            * (1 + this.buffSet.getBuff(BuffType.ALLDMG, this.troop.getTroopType()).getValue()
-                                 + this.buffSet.getBuff(BuffType.NORMALDMG, this.troop.getTroopType()).getValue()));
-        double adjAttack = (attack
-                                * this.troopCnt
-                                * Math.sqrt(EQ_CONST_1 / this.troopCnt)
-                                * (EQ_CONST_2 + (this.troopCnt / EQ_CONST_3)));
-        return adjAttack;
+    public double applyCntDmgReduction(double losses) {
+        return losses * (1 - (buffSet.getBuff(BuffType.ALLDMGREDUCTION, troop.getTroopType()).getValue()
+                                + buffSet.getBuff(BuffType.NORMALDMGREDUCTION, troop.getTroopType()).getValue()
+                                + buffSet.getBuff(BuffType.COUNTERDMGREDUCTION, troop.getTroopType()).getValue()));
+    }
+
+    public double applySkillDmgReduction(double losses) {
+        return losses * (1 - (buffSet.getBuff(BuffType.ALLDMGREDUCTION, troop.getTroopType()).getValue()
+                                + buffSet.getBuff(BuffType.SKILLDMGREDUCTION, troop.getTroopType()).getValue()));
     }
 
     public double calcDefense() {
-        double defense = (this.troop.getDef()
-                            * this.troop.getHp()
-                            * (1 + this.buffSet.getBuff(BuffType.DEF, this.troop.getTroopType()).getValue())
-                            * (1 + this.buffSet.getBuff(BuffType.HP, this.troop.getTroopType()).getValue()));
+        double defense = (troop.getDef()
+                            * troop.getHp()
+                            * (1 + buffSet.getBuff(BuffType.DEF, troop.getTroopType()).getValue())
+                            * (1 + buffSet.getBuff(BuffType.HP, troop.getTroopType()).getValue()));
         return defense;
     }
 
+    public double calcAttack() {
+        double attack = (troop.getAtk()
+                            * (1 + buffSet.getBuff(BuffType.ATK, troop.getTroopType()).getValue())
+                            * (1 + buffSet.getBuff(BuffType.ALLDMG, troop.getTroopType()).getValue()
+                                 + buffSet.getBuff(BuffType.NORMALDMG, troop.getTroopType()).getValue())
+                            * troopCnt
+                            * Math.sqrt(EQ_CONST_1 / troopCnt)
+                            * (EQ_CONST_2 + (troopCnt / EQ_CONST_3)));
+        return attack;
+    }
+
     public double calcCounterAtk() {
-        double counterAtk = 0;
-        double adjCounterAtk = 0;
-        return adjCounterAtk;
+        double counterAtk = (troop.getAtk()
+                                * (1 + buffSet.getBuff(BuffType.ATK, troop.getTroopType()).getValue())
+                                * (1 + buffSet.getBuff(BuffType.ALLDMG, troop.getTroopType()).getValue()
+                                     + buffSet.getBuff(BuffType.NORMALDMG, troop.getTroopType()).getValue()
+                                     + buffSet.getBuff(BuffType.COUNTERDMG, troop.getTroopType()).getValue())
+                                * troopCnt
+                                * Math.sqrt(EQ_CONST_1 / troopCnt)
+                                * (EQ_CONST_2 + (troopCnt / EQ_CONST_3)));
+        return counterAtk;
     }
 
     public double calcPrimDirectDmg() {
-        double directDmg = 0;
-        return directDmg;
+        double directDmgFac = primaryCmdr.getBuffSet().getBuff(BuffType.DDF, TroopType.ALL).getValue();
+
+        double attack = (troop.getAtk()
+                            * (1 + buffSet.getBuff(BuffType.ATK, troop.getTroopType()).getValue())
+                            * (1 + buffSet.getBuff(BuffType.ALLDMG, troop.getTroopType()).getValue()
+                                 + buffSet.getBuff(BuffType.SKILLDMG, troop.getTroopType()).getValue())
+                            * troopCnt
+                            * Math.sqrt(EQ_CONST_1 / troopCnt)
+                            * (EQ_CONST_2 + (troopCnt / EQ_CONST_3)));
+
+        return attack * (directDmgFac / 200);
     }
 
     public double calcSecDirectDmg() {
-        double directDmg = 0;
-        return directDmg;
+        double directDmgFac = secondaryCmdr.getBuffSet().getBuff(BuffType.DDF, TroopType.ALL).getValue();
+
+        double attack = (troop.getAtk()
+                            * (1 + buffSet.getBuff(BuffType.ATK, troop.getTroopType()).getValue())
+                            * (1 + buffSet.getBuff(BuffType.ALLDMG, troop.getTroopType()).getValue()
+                                 + buffSet.getBuff(BuffType.SKILLDMG, troop.getTroopType()).getValue())
+                            * troopCnt
+                            * Math.sqrt(EQ_CONST_1 / troopCnt)
+                            * (EQ_CONST_2 + (troopCnt / EQ_CONST_3)));
+
+        return attack * (directDmgFac / 200);
     }
 }
