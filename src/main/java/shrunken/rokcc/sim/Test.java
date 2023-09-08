@@ -12,8 +12,8 @@ public class Test {
         // Append two rows of arbitrary data
         df = df.append(Arrays.asList(150, 5, 2));  // 150 damage, 5 troops, 2 rage
         df = df.append(Arrays.asList(220, 3, 1));  // 220 damage, 3 troops, 1 rage
-
+        df.set(0, "damage_dealt", 200);
         // Display the DataFrame
-        System.out.println(df);
+        System.out.println(df.get(0, "damage_dealt"));
     }
 }

@@ -12,9 +12,9 @@ import joinery.DataFrame;
         // Append two rows of arbitrary data
 <span class="nc" id="L13">        df = df.append(Arrays.asList(150, 5, 2));  // 150 damage, 5 troops, 2 rage</span>
 <span class="nc" id="L14">        df = df.append(Arrays.asList(220, 3, 1));  // 220 damage, 3 troops, 1 rage</span>
-
+<span class="nc" id="L15">        df.set(0, &quot;damage_dealt&quot;, 200);</span>
         // Display the DataFrame
-<span class="nc" id="L17">        System.out.println(df);</span>
+<span class="nc" id="L17">        System.out.println(df.get(0, &quot;damage_dealt&quot;));</span>
 <span class="nc" id="L18">    }</span>
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.4.201905082037</span></div></body></html>
