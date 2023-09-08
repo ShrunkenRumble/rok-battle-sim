@@ -9,7 +9,7 @@
             "values" : [0.03, 0.06, 0.09, 0.12, 0.15]
         }
     ],
-    "passive1" : [
+    "skill2" : [
         { 
             "buffType" : "HP", 
             "troopType" : "INF",
@@ -18,7 +18,7 @@
             "values" : [0.01, 0.02, 0.03, 0.04, 0.05]
         }
     ],
-    "passive2" : [
+    "skill3" : [
         {
             "buffType" : "ATK", 
             "troopType" : "INF",
@@ -27,7 +27,7 @@
             "values" : [0.01, 0.02, 0.03, 0.04, 0.05]
         }
     ],
-    "passive3" : [ 
+    "skill4" : [ 
         {
             "buffType" : "DEF", 
             "troopType" : "INF",

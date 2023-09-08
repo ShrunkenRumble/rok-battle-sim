@@ -22,9 +22,9 @@ public class Commander {
 
     private int rageRequirement;
     private List<SkillComponent> active;
-    private List<SkillComponent> passive1;
-    private List<SkillComponent> passive2;
-    private List<SkillComponent> passive3;
+    private List<SkillComponent> skill2;
+    private List<SkillComponent> skill3;
+    private List<SkillComponent> skill4;
     private List<SkillComponent> expertise;
 
     // Getters
@@ -33,9 +33,9 @@ public class Commander {
     public BuffSet getBuffSet() {return this.buffSet;}
     public int[] getSkillLevels() {return this.skillLevels;}
     public List<SkillComponent> getActive() {return this.active;}
-    public List<SkillComponent> getPassive1() {return this.passive1;}
-    public List<SkillComponent> getPassive2() {return this.passive2;}
-    public List<SkillComponent> getPassive3() {return this.passive3;}
+    public List<SkillComponent> getSkill2() {return this.skill2;}
+    public List<SkillComponent> getSkill3() {return this.skill3;}
+    public List<SkillComponent> getSkill4() {return this.skill4;}
     public List<SkillComponent> getExpertise() {return this.expertise;}
     public boolean getIsExpertised() {return this.isExpertised;}
 
@@ -45,9 +45,9 @@ public class Commander {
     public void setBuffSet(BuffSet buffSet) {this.buffSet = buffSet;}
     public void setSkillLevels(int[] skillLevels) {this.skillLevels = skillLevels;}
     public void setActive(List<SkillComponent> active) {this.active = active;}
-    public void setPassive1(List<SkillComponent> passive1) {this.passive1 = passive1;}
-    public void setPassive2(List<SkillComponent> passive2) {this.passive2 = passive2;}
-    public void setPassive3(List<SkillComponent> passive3) {this.passive3 = passive3;}
+    public void setSkill2(List<SkillComponent> skill2) {this.skill2 = skill2;}
+    public void setSkill3(List<SkillComponent> skill3) {this.skill3 = skill3;}
+    public void setSkill4(List<SkillComponent> skill4) {this.skill4 = skill4;}
     public void setExpertise(List<SkillComponent> expertise) {this.expertise = expertise;}
     public void setIsExpertised(boolean isExpertised) {this.isExpertised = isExpertised;}
 
@@ -79,27 +79,27 @@ public class Commander {
     // Used to populate buffSet with the permanent buffs from the skill components
     private static BuffSet createBuffset(Commander commander) {
         BuffSet buffSet = new BuffSet();
-        if (commander.getPassive1() != null) {
+        if (commander.getSkill2() != null) {
             if (commander.getSkillLevels()[1] >= 1){
-                for (SkillComponent comp : commander.getPassive1()) {
+                for (SkillComponent comp : commander.getSkill2()) {
                     if (comp.getDuration() == 0) {
                         buffSet.addBuff(comp.toBuff(commander.skillLevels[1]-1));
                     }
                 }
             }
         }
-        if (commander.getPassive2() != null) {
+        if (commander.getSkill3() != null) {
             if (commander.getSkillLevels()[2] >= 1) {
-                for (SkillComponent comp : commander.getPassive2()) {
+                for (SkillComponent comp : commander.getSkill3()) {
                     if (comp.getDuration() == 0) {
                         buffSet.addBuff(comp.toBuff(commander.skillLevels[2]-1));
                     }
                 }
             }
         }
-        if (commander.getPassive3() != null) {
+        if (commander.getSkill4() != null) {
             if (commander.getSkillLevels()[3] >= 1) {
-                for (SkillComponent comp : commander.getPassive3()) {
+                for (SkillComponent comp : commander.getSkill4()) {
                     if (comp.getDuration() == 0) {
                         buffSet.addBuff(comp.toBuff(commander.skillLevels[3]-1));
                     }
@@ -116,5 +116,9 @@ public class Commander {
             }
         }
         return buffSet;
+    }
+
+    public void fireActiveSkill() {
+        
     }
 }

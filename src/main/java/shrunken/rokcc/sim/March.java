@@ -52,21 +52,14 @@ public class March {
     public void addRage(double rage) {this.rage += rage;}
     public void applyLoss(double loss) {this.troopCnt -= loss;}
     
-    
-    public double applyAtkReduction(double losses) {
-        return losses * (1 - (buffSet.getBuff(BuffType.ALLDMGREDUCTION, troop.getTroopType()).getValue()
-                                + buffSet.getBuff(BuffType.NORMALDMGREDUCTION, troop.getTroopType()).getValue()));
-    }
-
-    public double applyCntDmgReduction(double losses) {
-        return losses * (1 - (buffSet.getBuff(BuffType.ALLDMGREDUCTION, troop.getTroopType()).getValue()
-                                + buffSet.getBuff(BuffType.NORMALDMGREDUCTION, troop.getTroopType()).getValue()
-                                + buffSet.getBuff(BuffType.COUNTERDMGREDUCTION, troop.getTroopType()).getValue()));
+    public double applyCntrDmgReduction(double losses) {
+        return losses * (1 - (buffSet.getBuff(BuffType.ALL_DMG_REDUCTION, troop.getTroopType()).getValue()
+                                + buffSet.getBuff(BuffType.COUNTER_DMG_REDUCTION, troop.getTroopType()).getValue()));
     }
 
     public double applySkillDmgReduction(double losses) {
-        return losses * (1 - (buffSet.getBuff(BuffType.ALLDMGREDUCTION, troop.getTroopType()).getValue()
-                                + buffSet.getBuff(BuffType.SKILLDMGREDUCTION, troop.getTroopType()).getValue()));
+        return losses * (1 - (buffSet.getBuff(BuffType.ALL_DMG_REDUCTION, troop.getTroopType()).getValue()
+                                + buffSet.getBuff(BuffType.SKILL_DMG_REDUCTION, troop.getTroopType()).getValue()));
     }
 
     public double calcDefense() {
@@ -80,8 +73,8 @@ public class March {
     public double calcAttack() {
         double attack = (troop.getAtk()
                             * (1 + buffSet.getBuff(BuffType.ATK, troop.getTroopType()).getValue())
-                            * (1 + buffSet.getBuff(BuffType.ALLDMG, troop.getTroopType()).getValue()
-                                 + buffSet.getBuff(BuffType.NORMALDMG, troop.getTroopType()).getValue())
+                            * (1 + buffSet.getBuff(BuffType.ALL_DMG, troop.getTroopType()).getValue()
+                                 + buffSet.getBuff(BuffType.NORMAL_DMG, troop.getTroopType()).getValue())
                             * troopCnt
                             * Math.sqrt(EQ_CONST_1 / troopCnt)
                             * (EQ_CONST_2 + (troopCnt / EQ_CONST_3)));
@@ -91,9 +84,9 @@ public class March {
     public double calcCounterAtk() {
         double counterAtk = (troop.getAtk()
                                 * (1 + buffSet.getBuff(BuffType.ATK, troop.getTroopType()).getValue())
-                                * (1 + buffSet.getBuff(BuffType.ALLDMG, troop.getTroopType()).getValue()
-                                     + buffSet.getBuff(BuffType.NORMALDMG, troop.getTroopType()).getValue()
-                                     + buffSet.getBuff(BuffType.COUNTERDMG, troop.getTroopType()).getValue())
+                                * (1 + buffSet.getBuff(BuffType.ALL_DMG, troop.getTroopType()).getValue()
+                                     + buffSet.getBuff(BuffType.NORMAL_DMG, troop.getTroopType()).getValue()
+                                     + buffSet.getBuff(BuffType.COUNTER_DMG, troop.getTroopType()).getValue())
                                 * troopCnt
                                 * Math.sqrt(EQ_CONST_1 / troopCnt)
                                 * (EQ_CONST_2 + (troopCnt / EQ_CONST_3)));
@@ -101,12 +94,12 @@ public class March {
     }
 
     public double calcPrimDirectDmg() {
-        double directDmgFac = primaryCmdr.getBuffSet().getBuff(BuffType.DDF, TroopType.ALL).getValue();
+        double directDmgFac = primaryCmdr.getBuffSet().getBuff(BuffType.DIRECT_DMG_FACTOR, TroopType.ALL).getValue();
 
         double attack = (troop.getAtk()
                             * (1 + buffSet.getBuff(BuffType.ATK, troop.getTroopType()).getValue())
-                            * (1 + buffSet.getBuff(BuffType.ALLDMG, troop.getTroopType()).getValue()
-                                 + buffSet.getBuff(BuffType.SKILLDMG, troop.getTroopType()).getValue())
+                            * (1 + buffSet.getBuff(BuffType.ALL_DMG, troop.getTroopType()).getValue()
+                                 + buffSet.getBuff(BuffType.SKILL_DMG, troop.getTroopType()).getValue())
                             * troopCnt
                             * Math.sqrt(EQ_CONST_1 / troopCnt)
                             * (EQ_CONST_2 + (troopCnt / EQ_CONST_3)));
@@ -115,16 +108,30 @@ public class March {
     }
 
     public double calcSecDirectDmg() {
-        double directDmgFac = secondaryCmdr.getBuffSet().getBuff(BuffType.DDF, TroopType.ALL).getValue();
+        double directDmgFac = secondaryCmdr.getBuffSet().getBuff(BuffType.DIRECT_DMG_FACTOR, TroopType.ALL).getValue();
 
         double attack = (troop.getAtk()
                             * (1 + buffSet.getBuff(BuffType.ATK, troop.getTroopType()).getValue())
-                            * (1 + buffSet.getBuff(BuffType.ALLDMG, troop.getTroopType()).getValue()
-                                 + buffSet.getBuff(BuffType.SKILLDMG, troop.getTroopType()).getValue())
+                            * (1 + buffSet.getBuff(BuffType.ALL_DMG, troop.getTroopType()).getValue()
+                                 + buffSet.getBuff(BuffType.SKILL_DMG, troop.getTroopType()).getValue())
                             * troopCnt
                             * Math.sqrt(EQ_CONST_1 / troopCnt)
                             * (EQ_CONST_2 + (troopCnt / EQ_CONST_3)));
 
         return attack * (directDmgFac / 200);
     }
+
+    /*
+    public double calcHeal() {
+        double healAmount = (buffSet.getBuff(BuffType.HEAL_FACTOR, TroopType.ALL).getValue() * Math.sqrt(troopCnt)) / troop.getHp();
+        healAmount = healAmount * (1 + buffSet.getBuff(BuffType.HEAL_ENHANCEMENT, TroopType.ALL).getValue());
+        return healAmount;
+    }
+
+    public double calcShield() {
+        double shieldAmount = (buffSet.getBuff(BuffType.SHIELD_FACTOR, TroopType.ALL).getValue() * Math.sqrt(troopCnt)) / 
+                                (troop.getHp() * (1 + buffSet.getBuff(BuffType.HP, troop.getTroopType()).getValue()));
+        return shieldAmount;
+    }
+    */
 }

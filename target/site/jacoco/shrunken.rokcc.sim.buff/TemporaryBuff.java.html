@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>TemporaryBuff.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">rokcc</a> &gt; <a href="index.source.html" class="el_package">shrunken.rokcc.sim.buff</a> &gt; <span class="el_source">TemporaryBuff.java</span></div><h1>TemporaryBuff.java</h1><pre class="source lang-java linenums">package shrunken.rokcc.sim.buff;
+
+import shrunken.rokcc.sim.troop.TroopType;
+
+public class TemporaryBuff extends Buff{
+    private int duration;
+    private int cooldown;
+
+    public TemporaryBuff(BuffType buffType, TroopType troopType, double value, int duration, int cooldown) {
+<span class="nc" id="L10">        super(buffType, troopType, value);</span>
+<span class="nc" id="L11">        this.duration = duration;</span>
+<span class="nc" id="L12">        this.cooldown = cooldown;</span>
+<span class="nc" id="L13">    }</span>
+
+    public TemporaryBuff(BuffType buffType, TroopType troopType) {
+<span class="nc" id="L16">        super(buffType, troopType);</span>
+<span class="nc" id="L17">        this.duration = 0;</span>
+<span class="nc" id="L18">        this.cooldown = 0;</span>
+<span class="nc" id="L19">    }</span>
+
+<span class="nc" id="L21">    public TemporaryBuff() {}</span>
+
+    // Getters
+<span class="nc" id="L24">    public int getDuration() {return this.duration;}</span>
+<span class="nc" id="L25">    public int getCooldown() {return this.cooldown;}</span>
+
+    // Setters
+<span class="nc" id="L28">    public void setDuration(int duration) {this.duration = duration;}</span>
+<span class="nc" id="L29">    public void setCooldown(int cooldown) {this.cooldown = cooldown;}</span>
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.4.201905082037</span></div></body></html>

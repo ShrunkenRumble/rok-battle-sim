@@ -41,17 +41,19 @@ public class Buff {
     public void setValue(double value) {this.value = value;}
 
     /*
-     * Is not mean't to be used on TemporaryBuffs or SkillComponents.
+     * Can be used on TemporaryBuffs or SkillComponents so long as they are being added 
+     * onto a permanent buff (i.e. the permanent buff calls .add(tempbuff))
      */
     public void plus(Buff buff2) {
-        if (!(buff2 instanceof TemporaryBuff) && !(buff2 instanceof SkillComponent)) {
-            if (!(this instanceof TemporaryBuff) && !(this instanceof SkillComponent)) {
-                if (this.equals(buff2)) {
-                    this.value += buff2.getValue();
-                }
+        if (!(this instanceof TemporaryBuff) && !(this instanceof SkillComponent)) {
+            if (this.equals(buff2)) {
+                this.value += buff2.getValue();
             }
         }
     }
+    /*
+     * Is not mean't to be used on TemporaryBuffs or SkillComponents.
+     */
     public static Buff add(Buff buff1, Buff buff2) {
         Buff result = new Buff();
         if (!(buff2 instanceof TemporaryBuff) && !(buff2 instanceof SkillComponent)) {
@@ -67,22 +69,24 @@ public class Buff {
     }
 
     /*
-     * Is not mean't to be used on TemporaryBuffs or SkillComponents.
+     * Can be used on TemporaryBuffs or SkillComponents so long as they are being subtracted 
+     * from a permanent buff (i.e. the permanent buff calls .minus(tempbuff))
      */
     public void minus(Buff buff2) {
-        if (!(buff2 instanceof TemporaryBuff) && !(buff2 instanceof SkillComponent)) {
-            if (!(this instanceof TemporaryBuff) && !(this instanceof SkillComponent)) {
-                if (this.equals(buff2)) {
-                    if (this.value - buff2.getValue() >= 0.0) {
-                        this.value -= buff2.getValue();
-                    } else {
-                        // A buff value should never be negative.
-                        this.value = 0;
-                    }
+        if (!(this instanceof TemporaryBuff) && !(this instanceof SkillComponent)) {
+            if (this.equals(buff2)) {
+                if (this.value - buff2.getValue() >= 0.0) {
+                    this.value -= buff2.getValue();
+                } else {
+                    // A buff value should never be negative.
+                    this.value = 0;
                 }
             }
         }
     }
+    /*
+     * Is not mean't to be used on TemporaryBuffs or SkillComponents.
+     */
     public static Buff subtract(Buff buff1, Buff buff2) {
         Buff result = new Buff();
         if (!(buff2 instanceof TemporaryBuff) && !(buff2 instanceof SkillComponent)) {
