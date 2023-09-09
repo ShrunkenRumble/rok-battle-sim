@@ -6,6 +6,7 @@
             "troopType" : "ALL",
             "duration" : 5,
             "cooldown" : 0,
+            "probability" : 1,
             "values" : [0.03, 0.06, 0.09, 0.12, 0.15]
         }
     ],
@@ -15,6 +16,7 @@
             "troopType" : "INF",
             "duration" : 0,
             "cooldown" : 0,
+            "probability" : 1,
             "values" : [0.01, 0.02, 0.03, 0.04, 0.05]
         }
     ],
@@ -24,6 +26,7 @@
             "troopType" : "INF",
             "duration" : 0,
             "cooldown" : 0,
+            "probability" : 1,
             "values" : [0.01, 0.02, 0.03, 0.04, 0.05]
         }
     ],
@@ -33,6 +36,7 @@
             "troopType" : "INF",
             "duration" : 0,
             "cooldown" : 0,
+            "probability" : 1,
             "values" : [0.01, 0.02, 0.03, 0.04, 0.05]
         }
     ]

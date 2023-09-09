@@ -7,7 +7,6 @@ import shrunken.rokcc.sim.troop.TroopType;
 public class Buff {
     private BuffType buffType;
     private TroopType troopType;
-
     @JsonIgnore
     private double value;
 

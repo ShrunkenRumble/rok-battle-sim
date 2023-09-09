@@ -7,8 +7,8 @@ import shrunken.rokcc.sim.troop.TroopType;
 public class SkillComponent extends TemporaryBuff{
     private List<Double> values;
 
-    public SkillComponent(BuffType buffType, TroopType troopType, List<Double> values, int duration, int cooldown) {
-        super(buffType, troopType, 0, duration, cooldown);
+    public SkillComponent(BuffType buffType, TroopType troopType, List<Double> values, int duration, int cooldown, double probability) {
+        super(buffType, troopType, 0, duration, cooldown, probability);
         this.values = values;
     }
 
@@ -25,17 +25,13 @@ public class SkillComponent extends TemporaryBuff{
     // Setters
     public void setValues(List<Double> values) {this.values = values;}
 
-
-    /*
-     * Note only makes sense to convert to TemporaryBuff or Buff when skill level has been given
-     * and the duration + cooldown are zero.
-     */
     public TemporaryBuff toTempBuff(int skillLevel) {
         TemporaryBuff tempBuff = new TemporaryBuff(this.getBuffType(), 
                                                     this.getTroopType(), 
                                                     values.get(skillLevel), 
                                                     this.getDuration(), 
-                                                    this.getCooldown());
+                                                    this.getCooldown(),
+                                                    this.getProbability());
         return tempBuff;
     }
 

@@ -1,6 +1,7 @@
 package shrunken.rokcc.sim;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.IntStream;
 import java.io.InputStream;
@@ -9,6 +10,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 import shrunken.rokcc.sim.buff.BuffSet;
 import shrunken.rokcc.sim.buff.SkillComponent;
+import shrunken.rokcc.sim.buff.TemporaryBuff;
 
 public class Commander {
     @JsonIgnore
@@ -19,6 +21,8 @@ public class Commander {
     private int[] skillLevels;
     @JsonIgnore
     private boolean isExpertised;
+    @JsonIgnore
+    private List<TemporaryBuff> tempBuffList;
 
     private int rageRequirement;
     private List<SkillComponent> active;
@@ -37,6 +41,7 @@ public class Commander {
     public List<SkillComponent> getSkill3() {return this.skill3;}
     public List<SkillComponent> getSkill4() {return this.skill4;}
     public List<SkillComponent> getExpertise() {return this.expertise;}
+    public List<TemporaryBuff> getTempBuffList() {return this.tempBuffList;}
     public boolean getIsExpertised() {return this.isExpertised;}
 
     // Setters
@@ -50,6 +55,7 @@ public class Commander {
     public void setSkill4(List<SkillComponent> skill4) {this.skill4 = skill4;}
     public void setExpertise(List<SkillComponent> expertise) {this.expertise = expertise;}
     public void setIsExpertised(boolean isExpertised) {this.isExpertised = isExpertised;}
+    public void setTempBuffList(List<TemporaryBuff> tempBuffList) {this.tempBuffList = tempBuffList;}
 
     // Used to initialize Commander class
     public static Commander loadFromJson(String name, int[] skillLevels) {
@@ -68,6 +74,7 @@ public class Commander {
                     commander.setIsExpertised(false);
                 }
                 commander.setBuffSet(createBuffset(commander));
+                commander.setTempBuffList(createTempBuffList(commander));
             }
             return commander;
         } catch (IOException e) {
@@ -80,11 +87,11 @@ public class Commander {
     private static BuffSet createBuffset(Commander commander) {
         BuffSet buffSet = new BuffSet();
         if (commander.getSkill2() != null) {
-            if (commander.getSkillLevels()[1] >= 1){
+            if (commander.getSkillLevels()[1] >= 1) {
                 for (SkillComponent comp : commander.getSkill2()) {
                     if (comp.getDuration() == 0) {
                         buffSet.addBuff(comp.toBuff(commander.skillLevels[1]-1));
-                    }
+                    } 
                 }
             }
         }
@@ -118,7 +125,44 @@ public class Commander {
         return buffSet;
     }
 
-    public void fireActiveSkill() {
-        
+    private static List<TemporaryBuff> createTempBuffList(Commander commander) {
+        List<TemporaryBuff> tempBuffList = new ArrayList<TemporaryBuff>();
+        if (commander.getSkill2() != null) {
+            if (commander.getSkillLevels()[1] >= 1) {
+                for (SkillComponent comp : commander.getSkill2()) {
+                    if (comp.getDuration() > 0) {
+                        tempBuffList.add(comp.toTempBuff(commander.skillLevels[1]-1));
+                    } 
+                }
+            }
+        }
+        if (commander.getSkill3() != null) {
+            if (commander.getSkillLevels()[2] >= 1) {
+                for (SkillComponent comp : commander.getSkill3()) {
+                    if (comp.getDuration() > 0) {
+                        tempBuffList.add(comp.toTempBuff(commander.skillLevels[2]-1));
+                    }
+                }
+            }
+        }
+        if (commander.getSkill4() != null) {
+            if (commander.getSkillLevels()[3] >= 1) {
+                for (SkillComponent comp : commander.getSkill4()) {
+                    if (comp.getDuration() > 0) {
+                        tempBuffList.add(comp.toTempBuff(commander.skillLevels[3]-1));
+                    }
+                }
+            }
+        }
+        if (commander.getExpertise() != null) {
+            if (commander.getIsExpertised()) {
+                for (SkillComponent comp : commander.getExpertise()) {
+                    if (comp.getDuration() > 0) {
+                        tempBuffList.add(comp.toTempBuff(0));
+                    }
+                }
+            }
+        }
+        return tempBuffList;
     }
 }
