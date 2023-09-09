@@ -1,0 +1,43 @@
+{
+    "rageRequirement" : 1000,
+    "active" : [
+        { 
+            "buffType" : "DEF", 
+            "troopType" : "ALL",
+            "duration" : 5,
+            "cooldown" : 0,
+            "probability" : 1,
+            "values" : [0.03, 0.06, 0.09, 0.12, 0.15]
+        }
+    ],
+    "skill2" : [
+        { 
+            "buffType" : "HP", 
+            "troopType" : "INF",
+            "duration" : 0,
+            "cooldown" : 0,
+            "probability" : 1,
+            "values" : [0.01, 0.02, 0.03, 0.04, 0.05]
+        }
+    ],
+    "skill3" : [
+        {
+            "buffType" : "ATK", 
+            "troopType" : "INF",
+            "duration" : 0,
+            "cooldown" : 0,
+            "probability" : 1,
+            "values" : [0.01, 0.02, 0.03, 0.04, 0.05]
+        }
+    ],
+    "skill4" : [ 
+        {
+            "buffType" : "DEF", 
+            "troopType" : "INF",
+            "duration" : 0,
+            "cooldown" : 0,
+            "probability" : 1,
+            "values" : [0.01, 0.02, 0.03, 0.04, 0.05]
+        }
+    ]
+}
