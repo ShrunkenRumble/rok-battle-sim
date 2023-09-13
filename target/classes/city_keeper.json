@@ -4,7 +4,6 @@
         { 
             "buffType" : "DEF", 
             "troopType" : "ALL",
-            "isDebuff" : false,
             "duration" : 5,
             "cooldown" : 0,
             "probability" : 1,
@@ -15,7 +14,6 @@
         { 
             "buffType" : "HP", 
             "troopType" : "INF",
-            "isDebuff" : false,
             "duration" : 0,
             "cooldown" : 0,
             "probability" : 1,
@@ -26,7 +24,6 @@
         {
             "buffType" : "ATK", 
             "troopType" : "INF",
-            "isDebuff" : false,
             "duration" : 0,
             "cooldown" : 0,
             "probability" : 1,
@@ -37,7 +34,6 @@
         {
             "buffType" : "DEF", 
             "troopType" : "INF",
-            "isDebuff" : false,
             "duration" : 0,
             "cooldown" : 0,
             "probability" : 1,

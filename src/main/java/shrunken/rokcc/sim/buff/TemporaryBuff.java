@@ -9,8 +9,8 @@ public class TemporaryBuff extends Buff{
     private int cooldownEndTurn;
     private double probability;
 
-    public TemporaryBuff(BuffType buffType, TroopType troopType, double value, int duration, int cooldown, double probability) {
-        super(buffType, troopType, value);
+    public TemporaryBuff(BuffType buffType, TroopType troopType, boolean isDebuff, double value, int duration, int cooldown, double probability) {
+        super(buffType, troopType, isDebuff, value);
         this.duration = duration;
         this.cooldown = cooldown;
         this.probability = probability;
@@ -18,8 +18,8 @@ public class TemporaryBuff extends Buff{
         cooldownEndTurn = 0;
     }
 
-    public TemporaryBuff(BuffType buffType, TroopType troopType) {
-        super(buffType, troopType);
+    public TemporaryBuff(BuffType buffType, TroopType troopType, boolean isDebuff) {
+        super(buffType, troopType, isDebuff);
         this.duration = 0;
         this.cooldown = 0;
         this.probability = 0;

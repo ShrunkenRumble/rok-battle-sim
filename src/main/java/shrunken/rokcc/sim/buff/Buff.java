@@ -7,18 +7,21 @@ import shrunken.rokcc.sim.troop.TroopType;
 public class Buff {
     private BuffType buffType;
     private TroopType troopType;
+    private boolean isDebuff;
     @JsonIgnore
     private double value;
 
-    public Buff(BuffType buffType, TroopType troopType, double value) {
+    public Buff(BuffType buffType, TroopType troopType, boolean isDebuff, double value) {
         this.buffType = buffType;
         this.troopType = troopType;
+        this.isDebuff = isDebuff;
         this.value = value;
     }
 
-    public Buff(BuffType buffType, TroopType troopType) {
+    public Buff(BuffType buffType, TroopType troopType, boolean isDebuff) {
         this.buffType = buffType;
         this.troopType = troopType;
+        this.isDebuff = isDebuff;
         this.value = 0;
     }
 
@@ -26,17 +29,19 @@ public class Buff {
 
     @Override
     public Buff clone() {
-        return new Buff(this.buffType, this.troopType, this.value);
+        return new Buff(this.buffType, this.troopType, this.isDebuff, this.value);
     }
 
     // Getters
     public BuffType getBuffType() {return this.buffType;}
     public TroopType getTroopType() {return this.troopType;}
+    public boolean getIsDebuff() {return this.isDebuff;}
     public double getValue() {return this.value;}
 
     // Setters
     public void setBuffType(BuffType buffType) {this.buffType = buffType;}
     public void setTroopType(TroopType troopType) {this.troopType = troopType;}
+    public void setIsDebuff(boolean isDebuff) {this.isDebuff = isDebuff;}
     public void setValue(double value) {this.value = value;}
 
     /*
