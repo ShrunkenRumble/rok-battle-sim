@@ -2,7 +2,7 @@
 Pre-req: Java SE 17
   
 Once you've cloned the repo follow these steps to compile & run the code.
-  1. `mvn clean package -Djacoco.skip=true` (If "build" folder already exists, remove it.)   
+  1. `mvn clean package -Djacoco.skip=true`
   2. `mvn dependency:build-classpath`  
   3. Copy the classpath
   4. `java -cp target/rokcc-1.jar:<classpath> shrunken.rokcc.sim.Test`
