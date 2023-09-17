@@ -40,11 +40,13 @@ public class BuffSet {
     }
 
     public Buff getBuff(BuffType buffType, TroopType troopType) {
-        Buff result = new Buff(buffType, troopType);
+        Buff result = new Buff(buffType, troopType, false);
         int index = this.buffs.indexOf(result);
         if (index != -1) {
             double value = this.buffs.get(this.buffs.indexOf(result)).getValue();
+            boolean isDebuff = this.buffs.get(this.buffs.indexOf(result)).getIsDebuff();
             result.setValue(value);
+            result.setIsDebuff(isDebuff);
         }
         return result;
     }   
