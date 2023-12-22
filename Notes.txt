@@ -1,8 +1,7 @@
 -------------------------RAGE---------------------------------------------------------------------------------
 rage cap 220 (debuffs are applied after rage reduced to 220 cap)
 +86 rage for attack
-+16 rage for counter (+16 for each additional march hit with counter)
-    Unclear: Do you also get +10 rage comp if ur counter < their attack for each additional march???
++16 rage for counter 
 
 If m1 attack < m2 counter
 m1 +10 rage
@@ -15,4 +14,12 @@ Do normal, counter, and skill dmg reductions work
     like all-dmg reductions or do they subtract like attack, defense, and health debuffs??
 
 How to implement rage reductions?
+
+Damage resistance is different from damage taken reduction. How?
+
+Does a damage reduction debuff work the same as a damage taken buff?
+
+
+
+
 

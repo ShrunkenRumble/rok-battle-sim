@@ -8,6 +8,7 @@ import shrunken.rokcc.sim.troop.TroopType;
 public class Battle {
     private March march1;
     private March march2;
+
     private DataFrame<Double> log;
     
     public Battle(March march1, March march2) {
